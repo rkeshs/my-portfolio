@@ -2,13 +2,16 @@
 import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import { personalInfo } from "@/lib/data";
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = "Rishikesh S - Portfolio", description = "My Portfolio" } =
-  Astro.props;
+const {
+  title = `${personalInfo.name} - Portfolio`,
+  description = `Portfolio of ${personalInfo.name}`,
+} = Astro.props;
 ---
 
 <!doctype html>
