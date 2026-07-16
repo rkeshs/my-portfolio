@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { MotionProps } from "framer-motion";
 
 interface MotionWrapperProps extends MotionProps {
@@ -7,32 +7,25 @@ interface MotionWrapperProps extends MotionProps {
   delay?: number;
 }
 
-// Default animations for sections
-const defaultAnimations = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      delay: delay,
-      ease: "easeOut",
-    },
-  }),
-};
+const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
 
 export default function MotionWrapper({
   children,
   delay = 0,
   ...props
 }: MotionWrapperProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={defaultAnimations}
-      custom={delay}
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: reduceMotion ? 0.2 : 0.6,
+        delay,
+        ease: EASE_OUT_QUINT,
+      }}
       {...props}
     >
       {children}

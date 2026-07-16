@@ -2,35 +2,43 @@
   "name": "my-portfolio",
   "type": "module",
   "version": "0.0.1",
-  "description": "Modern portfolio template with animations and glassmorphism effects",
+  "description": "Personal portfolio built with Astro, React, and Tailwind CSS",
   "author": "Rishikesh S",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rishikesh2003/my-portfolio"
+    "url": "https://github.com/rkeshs/my-portfolio"
+  },
+  "packageManager": "bun@1.3.14",
+  "engines": {
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.1",
-    "@radix-ui/react-slot": "^1.1.2",
-    "@tailwindcss/vite": "^4.0.14",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
-    "aos": "^2.3.4",
-    "astro": "^5.5.3",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.5.0",
-    "lucide-react": "^0.483.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.2",
-    "tailwindcss": "^4.0.14",
-    "tw-animate-css": "^1.2.4"
+    "@astrojs/react": "6.0.1",
+    "@tailwindcss/vite": "4.3.3",
+    "@vercel/analytics": "2.0.1",
+    "astro": "7.1.0",
+    "framer-motion": "12.42.2",
+    "lucide-react": "1.24.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "typescript": "6.0.3"
+  },
+  "overrides": {
+    "mdast-util-to-hast": "13.2.1"
   }
 }

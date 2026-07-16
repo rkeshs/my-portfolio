@@ -11,14 +11,14 @@ import Footer from "@/components/Footer";
 ---
 
 <Layout>
-  <GlassHeader client:only="react" />
+  <GlassHeader client:load />
   <main class="min-h-screen">
-    <HeroSection client:only="react" />
-    <ExperienceSection client:only="react" />
-    <SkillsSection client:only="react" />
-    <ProjectsSection client:only="react" />
-    <AwardsSection client:only="react" />
-    <EducationSection client:only="react" />
+    <HeroSection client:load />
+    <ExperienceSection client:load />
+    <SkillsSection client:load />
+    <ProjectsSection client:load />
+    <AwardsSection client:load />
+    <EducationSection client:load />
   </main>
-  <Footer client:only="react" />
+  <Footer client:load />
 </Layout>

@@ -1,66 +1,50 @@
-import React from "react";
 import { projects } from "@/lib/data";
-import {
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Github } from "lucide-react";
-import { GlassCard } from "./ui/glass-card";
+import { Code2 as Github, ArrowUpRight } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
-import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-12 relative">
+    <section id="projects" className="py-16 md:py-20 scroll-mt-16">
       <div className="container max-w-4xl mx-auto px-6 md:px-4">
         <MotionWrapper>
-          <h2 className="text-2xl font-bold mb-8 text-center md:text-left">
-            🚀 Projects
-          </h2>
+          <SectionHeading>Projects</SectionHeading>
         </MotionWrapper>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-14">
           {projects.map((project, index) => (
-            <MotionWrapper key={project.title} delay={index * 0.2}>
-              <GlassCard className="group overflow-hidden dark:border-purple-500/10 h-full flex flex-col">
-                <CardHeader className="bg-gradient-to-r from-purple-500/5 to-pink-500/5">
-                  <CardTitle className="text-center md:text-left group-hover:text-purple-500 transition-colors duration-300">
+            <MotionWrapper key={project.title} delay={index * 0.1}>
+              <article className="grid md:grid-cols-[240px_1fr] gap-x-10 gap-y-5">
+                <div>
+                  <h3 className="font-display text-xl leading-tight">
                     {project.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <ul className="list-disc ml-4 space-y-1 text-sm group-hover:space-y-2 transition-all duration-300">
-                    {project.description.map((desc, i) => (
-                      <motion.li
-                        key={i}
-                        className="text-muted-foreground"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        {desc}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter className="flex justify-center md:justify-start items-center border-t border-border/30 bg-gradient-to-r from-purple-500/5 to-pink-500/5">
-                  <motion.a
+                  </h3>
+                  <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-sm text-muted-foreground hover:text-purple-500 transition-colors group/link pt-8"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="mt-4 inline-flex min-h-11 items-center gap-2 border border-border px-3.5 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors group"
                   >
-                    <Github className="h-4 w-4 mr-2 group-hover/link:rotate-12 transition-transform duration-300" />
-                    View on GitHub 🔗
-                  </motion.a>
-                </CardFooter>
-              </GlassCard>
+                    <Github className="h-4 w-4" aria-hidden="true" />
+                    View on GitHub
+                    <ArrowUpRight
+                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </div>
+                <ul className="space-y-2.5 text-sm text-muted-foreground">
+                  {project.description.map((desc, i) => (
+                    <li key={i} className="flex gap-3">
+                      <span
+                        className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary"
+                        aria-hidden="true"
+                      />
+                      <span className="leading-relaxed">{desc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             </MotionWrapper>
           ))}
         </div>
