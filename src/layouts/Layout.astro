@@ -1,20 +1,26 @@
 ---
 import "../styles/global.css";
-
+import Analytics from "@vercel/analytics/astro";
+import { personalInfo } from "@/lib/data";
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = "Rishikesh S - Portfolio", description = "My Portfolio" } =
-  Astro.props;
+const {
+  title = `${personalInfo.name} - Portfolio`,
+  description = `Portfolio of ${personalInfo.name}`,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -22,18 +28,23 @@ const { title = "Rishikesh S - Portfolio", description = "My Portfolio" } =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#262626"
+      media="(prefers-color-scheme: dark)"
+    />
   </head>
-  <body
-    class="min-h-screen bg-background font-sans antialiased selection:bg-purple-500/20 selection:text-purple-500"
-  >
-    <div
-      class="fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-    >
-    </div>
+  <body class="min-h-screen bg-background font-sans antialiased">
     <slot />
+    <Analytics />
   </body>
 </html>
 
@@ -71,13 +82,9 @@ const { title = "Rishikesh S - Portfolio", description = "My Portfolio" } =
     scroll-behavior: smooth;
   }
 
-  :root {
-    --transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
   body {
     transition:
-      background-color var(--transition-standard),
-      color var(--transition-standard);
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
