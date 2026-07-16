@@ -1,8 +1,8 @@
-# Rishikesh S — Portfolio
+# Modern Portfolio Template
 
-Personal portfolio for [Rishikesh S](https://rishikeshs.net/), built with Astro 7, React 19, Tailwind CSS 4, and Framer Motion.
+A responsive portfolio template built with Astro 7, React 19, Tailwind CSS 4, and Framer Motion.
 
-![Portfolio screenshot](https://github.com/user-attachments/assets/4f2466f1-1ebe-4cbe-857c-40eccd63c384)
+![Portfolio screenshot](./screenshot.jpg)
 
 ## Features
 
@@ -28,7 +28,7 @@ bun run dev
 
 Open `http://localhost:4321`.
 
-Copy `.env.example` to `.env` when you need production URL generation locally. Set `ORIGIN=https://rishikeshs.net` in the production deployment environment so Astro can generate canonical URLs correctly.
+Copy `.env.example` to `.env` when you need production URL generation locally. Set `ORIGIN` to your public URL in the production deployment environment so Astro can generate canonical URLs correctly.
 
 ## Commands
 
@@ -42,7 +42,7 @@ Copy `.env.example` to `.env` when you need production URL generation locally. S
 
 ## Update portfolio content
 
-Edit [`src/lib/data.ts`](src/lib/data.ts) to update personal details, work experience, skills, projects, awards, and education. Replace [`public/profile.jpg`](public/profile.jpg) to update the portrait.
+Edit [`src/lib/data.ts`](src/lib/data.ts) to update personal details, work experience, skills, projects, awards, and education. Replace the image referenced by `personalInfo.profilePicture` to update the portrait.
 
 ## Production verification
 
