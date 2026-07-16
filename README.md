@@ -1,186 +1,64 @@
-# Modern Portfolio Template
+# Rishikesh S — Portfolio
 
-A sleek, responsive portfolio website built with **Astro**, **React**, and **Tailwind CSS**, featuring modern animations and stunning glassmorphism effects.
+Personal portfolio for [Rishikesh S](https://rishikeshs.net/), built with Astro 7, React 19, Tailwind CSS 4, and Framer Motion.
 
-![Portfolio Screenshot](https://github.com/user-attachments/assets/4f2466f1-1ebe-4cbe-857c-40eccd63c384)
+![Portfolio screenshot](https://github.com/user-attachments/assets/4f2466f1-1ebe-4cbe-857c-40eccd63c384)
 
-## ✨ Features
+## Features
 
-- **Modern Design** – Clean, professional layout with elegant glassmorphism
-- **Animations** – Smooth transitions and interactive UI via Framer Motion
-- **Dark/Light Mode** – Automatic theme switching with system preference detection
-- **Fully Responsive** – Optimized for mobile, tablet, and desktop
-- **Blazing Fast** – Powered by Astro for superior performance
-- **Modular Structure** – Built for easy customization and scalability
-- **SEO Friendly** – Structured content and meta tags for better visibility
+- Responsive single-page portfolio
+- Light and dark themes
+- Reduced-motion support
+- Static Astro output with Vercel Analytics
+- Content managed from one TypeScript file
 
-## 🚀 Demo
+## Requirements
 
-👉 [Live Demo](https://rishilol.vercel.app/)
+- [Bun 1.3.14](https://bun.sh/)
+- Node.js 22.12 or newer (required by Astro 7)
 
-## 🛠 Getting Started
-
-### Prerequisites
-
-- Node.js (v18+ recommended)
-- npm / yarn / bun
-
-### Installation
+## Local development
 
 ```bash
-git clone https://github.com/yourusername/my-portfolio.git
+git clone https://github.com/rkeshs/my-portfolio.git
 cd my-portfolio
-
-# Install dependencies
-npm install
-# or
-yarn install
-# or
 bun install
-
-# Start development server
-npm run dev
-# or
-yarn dev
-# or
-bun dev
+bun run dev
 ```
 
-Visit `http://localhost:4321` in your browser to see it in action.
+Open `http://localhost:4321`.
 
-## 🧩 Customizing the Portfolio
+Copy `.env.example` to `.env` when you need production URL generation locally. Set `ORIGIN=https://rishikeshs.net` in the production deployment environment so Astro can generate canonical URLs correctly.
 
-All your content lives inside `src/lib/data.ts`. Update the following to make it yours:
+## Commands
 
-### 1. Personal Info
+| Command | Purpose |
+| --- | --- |
+| `bun run dev` | Start the development server |
+| `bun run check` | Run Astro and TypeScript diagnostics |
+| `bun run build` | Create the production build in `dist/` |
+| `bun run preview` | Preview the production build locally |
+| `bun run astro sync` | Regenerate Astro types after configuration changes |
 
-```ts
-export const personalInfo = {
-  name: "Your Name",
-  location: "Your Location",
-  email: "your.email@example.com",
-  github: "https://github.com/yourusername",
-  linkedin: "https://www.linkedin.com/in/yourusername/",
-};
-```
+## Update portfolio content
 
-### 2. Work Experience
+Edit [`src/lib/data.ts`](src/lib/data.ts) to update personal details, work experience, skills, projects, awards, and education. Replace [`public/profile.jpg`](public/profile.jpg) to update the portrait.
 
-```ts
-export const workExperience = [
-  {
-    company: "Company Name",
-    location: "Location",
-    position: "Your Position",
-    period: "Start Date - End Date",
-    achievements: [
-      "Achievement 1",
-      "Achievement 2",
-    ],
-  },
-];
-```
-
-### 3. Education
-
-```ts
-export const education = [
-  {
-    institution: "University Name",
-    location: "Location",
-    degree: "Your Degree",
-    period: "Start Date - End Date",
-    achievements: [
-      "Achievement 1",
-      "Achievement 2",
-    ],
-  },
-];
-```
-
-### 4. Skills
-
-```ts
-export const skills = {
-  programmingLanguages: ["TypeScript", "Python"],
-  frontendDevelopment: ["React", "Next.js"],
-  // and more...
-};
-```
-
-### 5. Projects
-
-```ts
-export const projects = [
-  {
-    title: "Project Name",
-    github: "https://github.com/yourusername/project",
-    description: [
-      "What it does",
-      "Technologies used",
-    ],
-  },
-];
-```
-
-### 6. Awards
-
-```ts
-export const awards = [
-  {
-    name: "Award Name",
-    issuer: "Issuer",
-    date: "Date",
-    type: "Type",
-    position: "Position",
-  },
-];
-```
-
-## 📦 Build for Production
+## Production verification
 
 ```bash
-npm run build
-# or
-yarn build
-# or
+bun install --frozen-lockfile
+bun run astro sync
+bun run check
 bun run build
 ```
 
-To preview the production build locally:
+Dependencies are pinned to exact versions in `package.json`; update `package.json` and `bun.lock` together with Bun.
 
-```bash
-npm run preview
-# or
-yarn preview
-```
+## Deployment
 
-## 📤 Deployment
+The site builds to static files in `dist/` and can be deployed to Vercel or any static host. The canonical site URL comes from the `ORIGIN` environment variable.
 
-Easily deploy to platforms like **Vercel**, **Netlify**, **GitHub Pages**, or any static host of your choice.
+## License
 
-## 📝 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## ©️ Copyright
-
-© 2025 **Rishikesh S.** All rights reserved.
-
-You’re welcome to use this template for your own portfolio — just update `data.ts` and tweak the design as needed. Please keep attribution to the original author.
-
----
-
-## 🌟 Like it?
-
-If you found this helpful or inspiring, **please consider leaving a star** ⭐ on the repo — it helps others discover it too!
-
----
-
-## 🙏 Acknowledgments
-
-- [Astro](https://astro.build/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Lucide Icons](https://lucide.dev/)
+MIT © 2026 Rishikesh S.

@@ -22,7 +22,7 @@ export default function GlassHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-sm">
       <div className="container max-w-4xl mx-auto px-6 md:px-4 h-14 flex justify-between items-center">
         <a
-          className="flex items-center gap-2.5 font-display text-sm tracking-wide"
+          className="flex min-h-11 items-center gap-2.5 font-display text-sm tracking-wide"
           href="/"
         >
           <span
@@ -38,7 +38,7 @@ export default function GlassHeader() {
             <a
               key={item}
               href={`#${item}`}
-              className="text-muted-foreground hover:text-primary transition-colors capitalize"
+              className="flex min-h-11 items-center px-1.5 text-muted-foreground hover:text-primary transition-colors capitalize"
             >
               {item}
             </a>
@@ -50,7 +50,7 @@ export default function GlassHeader() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="inline-flex h-11 w-11 items-center justify-center text-foreground md:hidden"
             onClick={toggleMenu}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
@@ -78,7 +78,7 @@ export default function GlassHeader() {
                 <a
                   key={item}
                   href={`#${item}`}
-                  className="py-2 text-muted-foreground hover:text-primary transition-colors capitalize"
+                  className="flex min-h-11 items-center text-muted-foreground hover:text-primary transition-colors capitalize"
                   onClick={toggleMenu}
                 >
                   {item}
