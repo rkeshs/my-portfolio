@@ -4,79 +4,75 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Default to the premium dark look or a matching light version? 
-     Let's make :root the "Light Premium" (Cream/Brown) and .dark the "Dark Premium" (Black/Gold) 
-     Actually, let's make the default variables consistent with a premium feel.
-  */
-  --radius: 0.625rem;
+  --radius: 0rem;
 
-  /* Light Mode - Cream/Gold/Brown */
-  --background: oklch(0.98 0.01 80); /* Warm Cream */
-  --foreground: oklch(0.2 0.03 50); /* Dark Brown */
-  --card: oklch(0.97 0.01 80);
-  --card-foreground: oklch(0.2 0.03 50);
-  --popover: oklch(0.98 0.01 80);
-  --popover-foreground: oklch(0.2 0.03 50);
-  --primary: oklch(0.45 0.12 50); /* Bronze/Brown */
-  --primary-foreground: oklch(0.98 0.01 80);
-  --secondary: oklch(0.92 0.02 80); /* Light Beige */
-  --secondary-foreground: oklch(0.45 0.12 50);
-  --muted: oklch(0.92 0.02 80);
-  --muted-foreground: oklch(0.5 0.05 50);
-  --accent: oklch(0.92 0.02 80);
-  --accent-foreground: oklch(0.45 0.12 50);
+  /* Light — pure paper, pure ink. Zero chroma everywhere; type does the talking. */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.3 0 0);
+  --card: oklch(0.97 0 0);
+  --card-foreground: oklch(0.3 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.3 0 0);
+  --primary: oklch(0.3 0 0);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0 0);
+  --secondary-foreground: oklch(0.3 0 0);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.47 0 0);
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.3 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.85 0.03 80);
-  --input: oklch(0.85 0.03 80);
-  --ring: oklch(0.45 0.12 50);
-  --chart-1: oklch(0.45 0.12 50);
-  --chart-2: oklch(0.55 0.15 60);
-  --chart-3: oklch(0.35 0.1 40);
-  --chart-4: oklch(0.65 0.18 70);
-  --chart-5: oklch(0.75 0.2 80);
-  --sidebar: oklch(0.98 0.01 80);
-  --sidebar-foreground: oklch(0.2 0.03 50);
-  --sidebar-primary: oklch(0.45 0.12 50);
-  --sidebar-primary-foreground: oklch(0.98 0.01 80);
-  --sidebar-accent: oklch(0.92 0.02 80);
-  --sidebar-accent-foreground: oklch(0.45 0.12 50);
-  --sidebar-border: oklch(0.85 0.03 80);
-  --sidebar-ring: oklch(0.45 0.12 50);
+  --border: oklch(0.89 0 0);
+  --input: oklch(0.89 0 0);
+  --ring: oklch(0.3 0 0);
+  --chart-1: oklch(0.3 0 0);
+  --chart-2: oklch(0.4 0 0);
+  --chart-3: oklch(0.6 0 0);
+  --chart-4: oklch(0.75 0 0);
+  --chart-5: oklch(0.88 0 0);
+  --sidebar: oklch(0.97 0 0);
+  --sidebar-foreground: oklch(0.3 0 0);
+  --sidebar-primary: oklch(0.3 0 0);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.94 0 0);
+  --sidebar-accent-foreground: oklch(0.3 0 0);
+  --sidebar-border: oklch(0.89 0 0);
+  --sidebar-ring: oklch(0.3 0 0);
 }
 
 .dark {
-  /* Premium Dark Mode - Black/Brown/Gold */
-  --background: oklch(0.12 0.01 40); /* Deep Brownish Black */
-  --foreground: oklch(0.95 0.02 80); /* Off-white */
-  --card: oklch(0.15 0.02 40); /* Slightly lighter black */
-  --card-foreground: oklch(0.95 0.02 80);
-  --popover: oklch(0.15 0.02 40);
-  --popover-foreground: oklch(0.95 0.02 80);
-  --primary: oklch(0.7 0.15 70); /* Gold */
-  --primary-foreground: oklch(0.12 0.01 40);
-  --secondary: oklch(0.25 0.03 40); /* Dark Brown */
-  --secondary-foreground: oklch(0.95 0.02 80);
-  --muted: oklch(0.25 0.03 40);
-  --muted-foreground: oklch(0.7 0.05 70);
-  --accent: oklch(0.25 0.03 40);
-  --accent-foreground: oklch(0.95 0.02 80);
+  /* Dark — the same page, inverted. */
+  --background: oklch(0.23 0 0);
+  --foreground: oklch(0.94 0 0);
+  --card: oklch(0.27 0 0);
+  --card-foreground: oklch(0.94 0 0);
+  --popover: oklch(0.27 0 0);
+  --popover-foreground: oklch(0.94 0 0);
+  --primary: oklch(0.94 0 0);
+  --primary-foreground: oklch(0.23 0 0);
+  --secondary: oklch(0.31 0 0);
+  --secondary-foreground: oklch(0.94 0 0);
+  --muted: oklch(0.31 0 0);
+  --muted-foreground: oklch(0.71 0 0);
+  --accent: oklch(0.31 0 0);
+  --accent-foreground: oklch(0.94 0 0);
   --destructive: oklch(0.5 0.2 25);
-  --border: oklch(0.3 0.03 40);
-  --input: oklch(0.3 0.03 40);
-  --ring: oklch(0.7 0.15 70);
-  --chart-1: oklch(0.7 0.15 70); /* Gold */
-  --chart-2: oklch(0.6 0.18 50); /* Burnt Orange */
-  --chart-3: oklch(0.5 0.12 40); /* Brown */
-  --chart-4: oklch(0.8 0.1 80); /* Light Gold */
-  --chart-5: oklch(0.4 0.08 30); /* Darker Brown */
-  --sidebar: oklch(0.15 0.02 40);
-  --sidebar-foreground: oklch(0.95 0.02 80);
-  --sidebar-primary: oklch(0.7 0.15 70);
-  --sidebar-primary-foreground: oklch(0.12 0.01 40);
-  --sidebar-accent: oklch(0.25 0.03 40);
-  --sidebar-accent-foreground: oklch(0.95 0.02 80);
-  --sidebar-border: oklch(0.3 0.03 40);
-  --sidebar-ring: oklch(0.7 0.15 70);
+  --border: oklch(0.38 0 0);
+  --input: oklch(0.38 0 0);
+  --ring: oklch(0.94 0 0);
+  --chart-1: oklch(0.94 0 0);
+  --chart-2: oklch(0.78 0 0);
+  --chart-3: oklch(0.6 0 0);
+  --chart-4: oklch(0.42 0 0);
+  --chart-5: oklch(0.39 0 0);
+  --sidebar: oklch(0.27 0 0);
+  --sidebar-foreground: oklch(0.94 0 0);
+  --sidebar-primary: oklch(0.94 0 0);
+  --sidebar-primary-foreground: oklch(0.23 0 0);
+  --sidebar-accent: oklch(0.31 0 0);
+  --sidebar-accent-foreground: oklch(0.94 0 0);
+  --sidebar-border: oklch(0.38 0 0);
+  --sidebar-ring: oklch(0.94 0 0);
 }
 
 @theme inline {
@@ -115,7 +111,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: "Space Grotesk", sans-serif;
+  --font-sans: "Archivo", system-ui, sans-serif;
 }
 
 @layer base {
@@ -125,4 +121,30 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  ::selection {
+    background-color: color-mix(in oklch, var(--foreground) 25%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Display voice: Anton — condensed poster caps. */
+@utility font-display {
+  font-family: "Anton", "Archivo", system-ui, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
 }

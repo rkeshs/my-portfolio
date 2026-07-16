@@ -1,57 +1,46 @@
 import { personalInfo } from "@/lib/data";
-import { motion } from "framer-motion";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-orange-600/10 py-6 bg-gradient-to-b from-background to-muted/20 backdrop-blur-sm">
+    <footer className="bg-foreground text-background py-10 mt-8">
       <div className="container max-w-4xl mx-auto px-6 md:px-4">
-        <motion.div
-          className="flex flex-col md:flex-row justify-between items-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <motion.p
-            className="text-sm text-muted-foreground text-center md:text-left"
-            whileHover={{ scale: 1.01 }}
-          >
-            &copy; {new Date().getFullYear()} {personalInfo.name}. All rights
-            reserved. ✨
-          </motion.p>
-          <motion.p
-            className="text-sm text-muted-foreground mt-2 md:mt-0 text-center md:text-left"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.01 }}
-          >
-            Built with{" "}
-            <motion.span
-              className="inline-block"
-              initial={{ rotate: 0 }}
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="flex items-center gap-2.5 text-sm">
+            <span
+              className="h-2 w-2 bg-background inline-block shrink-0"
+              aria-hidden="true"
+            />
+            &copy; {new Date().getFullYear()} {personalInfo.name}
+          </p>
+          <div className="flex items-center gap-5">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="text-background/70 hover:text-background transition-colors"
+              aria-label="Email"
             >
-              💻
-            </motion.span>{" "}
-            and{" "}
-            <motion.span
-              className="inline-block"
-              animate={{
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                repeat: Infinity,
-                repeatType: "reverse",
-                duration: 1.5,
-              }}
+              <Mail className="h-4 w-4" />
+            </a>
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/70 hover:text-background transition-colors"
+              aria-label="GitHub"
             >
-              ❤️
-            </motion.span>
-          </motion.p>
-        </motion.div>
+              <Github className="h-4 w-4" />
+            </a>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/70 hover:text-background transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

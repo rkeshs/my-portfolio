@@ -2,61 +2,61 @@ import ThemeToggle from "./ui/theme-toggle";
 import { personalInfo } from "@/lib/data";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+
+const NAV_ITEMS = [
+  "experience",
+  "skills",
+  "projects",
+  "awards",
+  "education",
+] as const;
 
 export default function GlassHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="sticky z-50 w-full backdrop-blur-md backdrop-filter bg-background/70 dark:bg-background/40 border-b border-border/40 supports-[backdrop-filter]:bg-background/60">
-      <div className="container max-w-4xl mx-auto p-4 flex justify-between items-center">
-        <motion.a
-          className="flex items-center text-lg font-medium"
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-sm">
+      <div className="container max-w-4xl mx-auto px-6 md:px-4 h-14 flex justify-between items-center">
+        <a
+          className="flex items-center gap-2.5 font-display text-sm tracking-wide"
           href="/"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
         >
-          ✨ {personalInfo.name}
-        </motion.a>
+          <span
+            className="h-2.5 w-2.5 bg-primary shrink-0"
+            aria-hidden="true"
+          />
+          {personalInfo.name}
+        </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {["experience", "skills", "projects", "awards", "education"].map(
-            (item, index) => (
-              <motion.a
-                key={item}
-                href={`#${item}`}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: index * 0.1 }}
-                whileHover={{ y: -2 }}
-              >
-                {item === "experience" && "💼 "}
-                {item === "skills" && "🛠️ "}
-                {item === "projects" && "🚀 "}
-                {item === "awards" && "🏆 "}
-                {item === "education" && "🎓 "}
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </motion.a>
-            )
-          )}
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item}
+              href={`#${item}`}
+              className="text-muted-foreground hover:text-primary transition-colors capitalize"
+            >
+              {item}
+            </a>
+          ))}
         </nav>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-1">
           <ThemeToggle />
 
           {/* Mobile Menu Button */}
-          <motion.button
+          <button
             className="md:hidden p-2 text-foreground"
             onClick={toggleMenu}
             aria-label="Toggle menu"
-            whileTap={{ scale: 0.95 }}
+            aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
 
@@ -64,33 +64,26 @@ export default function GlassHeader() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden py-4 px-4 border-t border-border/10 backdrop-blur-md backdrop-filter bg-background/80 dark:bg-background/40"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden border-t border-border bg-background"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{
+              duration: reduceMotion ? 0.05 : 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
-            <nav className="flex flex-col space-y-4 text-sm font-medium">
-              {["experience", "skills", "projects", "awards", "education"].map(
-                (item, index) => (
-                  <motion.a
-                    key={item}
-                    href={`#${item}`}
-                    className="transition-colors hover:text-foreground/80 text-foreground/60 py-2"
-                    onClick={toggleMenu}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2, delay: index * 0.1 }}
-                  >
-                    {item === "experience" && "💼 "}
-                    {item === "skills" && "🛠️ "}
-                    {item === "projects" && "🚀 "}
-                    {item === "awards" && "🏆 "}
-                    {item === "education" && "🎓 "}
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
-                  </motion.a>
-                )
-              )}
+            <nav className="flex flex-col px-6 py-4 gap-1 text-sm font-medium">
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item}`}
+                  className="py-2 text-muted-foreground hover:text-primary transition-colors capitalize"
+                  onClick={toggleMenu}
+                >
+                  {item}
+                </a>
+              ))}
             </nav>
           </motion.div>
         )}

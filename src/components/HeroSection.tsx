@@ -1,131 +1,129 @@
 import { personalInfo } from "@/lib/data";
 import { Mail, Github, MapPin, Linkedin } from "lucide-react";
-import { motion } from "framer-motion";
-import MotionWrapper from "./MotionWrapper";
+import { motion, useReducedMotion } from "framer-motion";
+import HeroCanvas from "./HeroCanvas";
+
+const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
+
+const contactLinks = [
+  {
+    label: "Email",
+    href: `mailto:${personalInfo.email}`,
+    icon: Mail,
+    external: false,
+  },
+  {
+    label: "GitHub",
+    href: personalInfo.github,
+    icon: Github,
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    href: personalInfo.linkedin,
+    icon: Linkedin,
+    external: true,
+  },
+];
 
 export default function HeroSection() {
+  const reduceMotion = useReducedMotion();
+
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: reduceMotion ? 0 : 0.09,
+        delayChildren: reduceMotion ? 0 : 0.1,
       },
     },
   };
 
   const childVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 28 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-      },
+      transition: { duration: reduceMotion ? 0.2 : 0.7, ease: EASE_OUT_QUINT },
     },
   };
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
-      <div className="container max-w-4xl mx-auto px-6 md:px-4 relative z-10">
+    <section className="relative bg-foreground text-background overflow-hidden">
+      <HeroCanvas />
+      <div className="relative container max-w-4xl mx-auto px-6 md:px-4 pt-16 pb-16 md:pt-24 md:pb-20">
         <motion.div
-          className="flex flex-col md:flex-row md:items-center justify-between mb-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <div className="text-center md:text-left">
-            <motion.h1
-              className="text-4xl font-bold mb-2"
-              variants={childVariants}
-            >
-              {personalInfo.name}{" "}
-              <span className="inline-block animate-pulse">✨</span>
-            </motion.h1>
-
-            <motion.p
-              className="text-xl text-muted-foreground mb-6"
-              variants={childVariants}
-            >
-              Software Engineer 👨‍💻
-            </motion.p>
+          <div className="flex flex-col-reverse md:flex-row md:items-end md:justify-between gap-12 md:gap-8">
+            <div className="min-w-0">
+              <motion.p
+                className="font-display text-base md:text-lg text-background/70 mb-4"
+                variants={childVariants}
+              >
+                Software Engineer
+              </motion.p>
+              <motion.h1
+                className="font-display text-[clamp(3rem,11vw,6rem)] leading-[0.95]"
+                variants={childVariants}
+              >
+                {personalInfo.name}.
+              </motion.h1>
+              <motion.p
+                className="mt-6 flex items-center gap-2 text-sm text-background/80"
+                variants={childVariants}
+              >
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                {personalInfo.location}
+              </motion.p>
+            </div>
 
             <motion.div
-              className="flex flex-col gap-2 items-center md:items-start"
-              variants={containerVariants}
+              className="shrink-0 self-center md:self-auto"
+              variants={childVariants}
             >
-              <motion.div
-                className="flex items-center text-sm text-muted-foreground"
-                variants={childVariants}
-                whileHover={{ scale: 1.05, color: "#4b5563" }}
-              >
-                <MapPin className="h-4 w-4 mr-2" />
-                📍 {personalInfo.location}
-              </motion.div>
-
-              <motion.a
-                href={`mailto:${personalInfo.email}`}
-                className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                variants={childVariants}
-                whileHover={{ scale: 1.05, color: "#4b5563" }}
-              >
-                <Mail className="h-4 w-4 mr-2" />
-                ✉️ {personalInfo.email}
-              </motion.a>
-
-              <motion.a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                variants={childVariants}
-                whileHover={{ scale: 1.05, color: "#4b5563" }}
-              >
-                <Github className="h-4 w-4 mr-2" />
-                🌟 GitHub
-              </motion.a>
-
-              <motion.a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                variants={childVariants}
-                whileHover={{ scale: 1.05, color: "#4b5563" }}
-              >
-                <Linkedin className="h-4 w-4 mr-2" />
-                🔗 LinkedIn
-              </motion.a>
+              <div className="relative group cursor-crosshair">
+                <div
+                  className="absolute -bottom-3 -right-3 h-full w-full bg-background transition-transform duration-300 ease-out group-hover:translate-x-1.5 group-hover:translate-y-1.5"
+                  aria-hidden="true"
+                />
+                <img
+                  src={personalInfo.profilePicture}
+                  alt={`Portrait of ${personalInfo.name}`}
+                  className="relative w-44 md:w-56 aspect-square object-cover grayscale contrast-110 transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:-translate-x-1 group-hover:-translate-y-1"
+                />
+              </div>
             </motion.div>
           </div>
 
-          <motion.div
-            className="mt-6 md:mt-0 flex justify-center"
+          <motion.p
+            className="mt-12 max-w-[65ch] leading-relaxed text-background/80"
             variants={childVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
-            <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-              <img
-                src={personalInfo.profilePicture}
-                alt="Profile"
-                className="w-48 md:w-60 rounded-full relative ring-2 ring-orange-600/50"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            {personalInfo.heroDescription}
+          </motion.p>
+
+          <motion.div
+            className="mt-8 flex flex-wrap gap-3"
+            variants={childVariants}
+          >
+            {contactLinks.map(({ label, href, icon: Icon, external }) => (
+              <a
+                key={label}
+                href={href}
+                {...(external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="inline-flex items-center gap-2 border border-background/50 px-4 py-2 text-sm font-medium hover:bg-background hover:border-background hover:text-foreground transition-colors"
+              >
+                <Icon className="h-4 w-4" aria-hidden="true" />
+                {label}
+              </a>
+            ))}
           </motion.div>
         </motion.div>
-
-        <MotionWrapper>
-          <div className="bg-gradient-to-r from-orange-600/10 to-amber-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-orange-600/20 dark:border-orange-600/10 shadow-sm">
-            <p className="text-muted-foreground pl-4 py-2 mb-4 relative">
-              <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-orange-600 to-amber-500 rounded-full"></span>
-              {personalInfo.heroDescription}
-            </p>
-          </div>
-        </MotionWrapper>
       </div>
     </section>
   );

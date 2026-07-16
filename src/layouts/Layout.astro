@@ -22,17 +22,21 @@ const { title = "Rishikesh S - Portfolio", description = "My Portfolio" } =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#262626"
+      media="(prefers-color-scheme: dark)"
+    />
   </head>
-  <body
-    class="min-h-screen bg-background font-sans antialiased selection:bg-orange-500/20 selection:text-orange-500"
-  >
-    <div
-      class="fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(160,100,50,0.25),rgba(0,0,0,0))]"
-    >
-    </div>
+  <body class="min-h-screen bg-background font-sans antialiased">
     <slot />
     <Analytics />
   </body>
@@ -72,13 +76,9 @@ const { title = "Rishikesh S - Portfolio", description = "My Portfolio" } =
     scroll-behavior: smooth;
   }
 
-  :root {
-    --transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
   body {
     transition:
-      background-color var(--transition-standard),
-      color var(--transition-standard);
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
