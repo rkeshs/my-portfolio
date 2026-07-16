@@ -1,5 +1,10 @@
 import { personalInfo } from "@/lib/data";
-import { Mail, Github, MapPin, Linkedin } from "lucide-react";
+import {
+  BriefcaseBusiness as Linkedin,
+  Code2 as Github,
+  Mail,
+  MapPin,
+} from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import HeroCanvas from "./HeroCanvas";
 
@@ -92,6 +97,9 @@ export default function HeroSection() {
                 <img
                   src={personalInfo.profilePicture}
                   alt={`Portrait of ${personalInfo.name}`}
+                  width="460"
+                  height="460"
+                  decoding="async"
                   className="relative w-44 md:w-56 aspect-square object-cover grayscale contrast-110 transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:-translate-x-1 group-hover:-translate-y-1"
                 />
               </div>
@@ -116,7 +124,7 @@ export default function HeroSection() {
                 {...(external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="inline-flex items-center gap-2 border border-background/50 px-4 py-2 text-sm font-medium hover:bg-background hover:border-background hover:text-foreground transition-colors"
+                className="inline-flex min-h-11 items-center gap-2 border border-background/50 px-4 py-2 text-sm font-medium hover:bg-background hover:border-background hover:text-foreground transition-colors"
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
                 {label}

@@ -1,4 +1,3 @@
-import React from "react";
 import { skills } from "@/lib/data";
 import MotionWrapper from "./MotionWrapper";
 import SectionHeading from "./SectionHeading";
@@ -27,18 +26,16 @@ export default function SkillsSection() {
                 <h3 className="text-sm font-semibold text-muted-foreground pt-0.5">
                   {label}
                 </h3>
-                <p className="font-medium leading-relaxed">
-                  {items.map((skill, i) => (
-                    <React.Fragment key={skill}>
-                      {i > 0 && (
-                        <span className="text-primary mx-2" aria-hidden="true">
-                          ·
-                        </span>
-                      )}
-                      <span className="whitespace-nowrap">{skill}</span>
-                    </React.Fragment>
+                <ul className="flex flex-wrap gap-x-2 gap-y-1 font-medium leading-relaxed">
+                  {items.map((skill) => (
+                    <li
+                      key={skill}
+                      className="whitespace-nowrap after:ml-2 after:text-primary after:content-['·'] last:after:hidden"
+                    >
+                      {skill}
+                    </li>
                   ))}
-                </p>
+                </ul>
               </div>
             </MotionWrapper>
           ))}

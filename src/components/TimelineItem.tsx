@@ -1,5 +1,4 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "framer-motion";
 
 interface TimelineItemProps {
@@ -39,7 +38,7 @@ export default function TimelineItem({
         <div className="h-2.5 w-2.5 mt-2 shrink-0 bg-primary z-10" />
         {!isLast && <div className="w-px grow bg-border" />}
       </div>
-      <div className={cn("min-w-0 flex-1", isLast ? "pb-0" : "pb-12")}>
+      <div className={`min-w-0 flex-1 ${isLast ? "pb-0" : "pb-12"}`}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-sm text-muted-foreground tabular-nums shrink-0">

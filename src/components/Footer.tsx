@@ -1,5 +1,9 @@
 import { personalInfo } from "@/lib/data";
-import { Github, Linkedin, Mail } from "lucide-react";
+import {
+  BriefcaseBusiness as Linkedin,
+  Code2 as Github,
+  Mail,
+} from "lucide-react";
 
 export default function Footer() {
   return (
@@ -13,10 +17,10 @@ export default function Footer() {
             />
             &copy; {new Date().getFullYear()} {personalInfo.name}
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-1">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="text-background/70 hover:text-background transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center text-background/70 hover:text-background transition-colors"
               aria-label="Email"
             >
               <Mail className="h-4 w-4" />
@@ -25,7 +29,7 @@ export default function Footer() {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/70 hover:text-background transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center text-background/70 hover:text-background transition-colors"
               aria-label="GitHub"
             >
               <Github className="h-4 w-4" />
@@ -34,7 +38,7 @@ export default function Footer() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-background/70 hover:text-background transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center text-background/70 hover:text-background transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-4 w-4" />

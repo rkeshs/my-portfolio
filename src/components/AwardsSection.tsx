@@ -1,4 +1,3 @@
-import React from "react";
 import { awards } from "@/lib/data";
 import MotionWrapper from "./MotionWrapper";
 import SectionHeading from "./SectionHeading";

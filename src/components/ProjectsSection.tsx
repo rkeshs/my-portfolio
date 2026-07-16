@@ -1,6 +1,5 @@
-import React from "react";
 import { projects } from "@/lib/data";
-import { Github, ArrowUpRight } from "lucide-react";
+import { Code2 as Github, ArrowUpRight } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 import SectionHeading from "./SectionHeading";
 
@@ -24,7 +23,7 @@ export default function ProjectsSection() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 border border-border px-3.5 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors group"
+                    className="mt-4 inline-flex min-h-11 items-center gap-2 border border-border px-3.5 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors group"
                   >
                     <Github className="h-4 w-4" aria-hidden="true" />
                     View on GitHub
