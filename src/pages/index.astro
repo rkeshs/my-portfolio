@@ -11,7 +11,9 @@ import Footer from "@/components/Footer";
 ---
 
 <Layout>
-  <GlassHeader client:load />
+  <div class="sticky top-0 z-50">
+    <GlassHeader client:load />
+  </div>
   <main class="min-h-screen">
     <HeroSection client:load />
     <ExperienceSection client:load />

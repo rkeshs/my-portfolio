@@ -24,7 +24,9 @@ export default function TimelineItem({
 
   return (
     <motion.div
-      className="relative flex gap-6"
+      className={`grid gap-5 border-t-2 border-foreground/20 py-8 md:grid-cols-[180px_1fr] md:gap-10 md:py-10 ${
+        isLast ? "border-b-2" : ""
+      }`}
       initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
@@ -34,18 +36,17 @@ export default function TimelineItem({
       }}
       viewport={{ once: true, margin: "-50px" }}
     >
-      <div className="flex flex-col items-center" aria-hidden="true">
-        <div className="h-2.5 w-2.5 mt-2 shrink-0 bg-primary z-10" />
-        {!isLast && <div className="w-px grow bg-border" />}
+      <div>
+        <p className="font-display text-xl text-ember md:text-2xl">
+          {date}
+        </p>
+        <span className="mt-3 block h-3 w-3 bg-coral" aria-hidden="true" />
       </div>
-      <div className={`min-w-0 flex-1 ${isLast ? "pb-0" : "pb-12"}`}>
-        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-          <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="text-sm text-muted-foreground tabular-nums shrink-0">
-            {date}
-          </p>
-        </div>
-        <p className="text-sm font-medium text-primary mt-1">{subtitle}</p>
+      <div className="min-w-0">
+        <h3 className="text-2xl font-black tracking-tight md:text-3xl">
+          {title}
+        </h3>
+        <p className="mt-1 font-semibold text-ember">{subtitle}</p>
         {children}
       </div>
     </motion.div>

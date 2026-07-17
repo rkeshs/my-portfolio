@@ -5,10 +5,16 @@ import SectionHeading from "./SectionHeading";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="py-16 md:py-20 scroll-mt-16">
-      <div className="container max-w-4xl mx-auto px-6 md:px-4">
+    <section id="experience" className="scroll-mt-16 bg-background py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6 md:px-8">
         <MotionWrapper>
           <SectionHeading>Work Experience</SectionHeading>
+        </MotionWrapper>
+        <MotionWrapper>
+          <p className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            Product engineering across fast-moving teams, complicated systems,
+            and the unglamorous details that make software dependable.
+          </p>
         </MotionWrapper>
         <div>
           {workExperience.map((job, index) => (
@@ -20,14 +26,14 @@ export default function ExperienceSection() {
               isLast={index === workExperience.length - 1}
               index={index}
             >
-              <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
+              <ul className="mt-6 grid gap-3 text-sm text-muted-foreground lg:grid-cols-2">
                 {job.achievements.map((achievement, i) => (
-                  <li key={i} className="flex gap-3">
+                  <li key={i} className="flex gap-3 leading-relaxed">
                     <span
-                      className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-primary"
+                      className="mt-[7px] h-2 w-2 shrink-0 bg-coral"
                       aria-hidden="true"
                     />
-                    <span className="leading-relaxed">{achievement}</span>
+                    <span>{achievement}</span>
                   </li>
                 ))}
               </ul>

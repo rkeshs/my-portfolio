@@ -1,28 +1,20 @@
 import { personalInfo } from "@/lib/data";
 import {
+  ArrowDownRight,
   BriefcaseBusiness as Linkedin,
   Code2 as Github,
   Mail,
   MapPin,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import HeroCanvas from "./HeroCanvas";
 
 const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
 
 const contactLinks = [
-  {
-    label: "Email",
-    href: `mailto:${personalInfo.email}`,
-    icon: Mail,
-    external: false,
-  },
-  {
-    label: "GitHub",
-    href: personalInfo.github,
-    icon: Github,
-    external: true,
-  },
+  { label: "Email", href: `mailto:${personalInfo.email}`, icon: Mail },
+  { label: "GitHub", href: personalInfo.github, icon: Github, external: true },
   {
     label: "LinkedIn",
     href: personalInfo.linkedin,
@@ -33,106 +25,148 @@ const contactLinks = [
 
 export default function HeroSection() {
   const reduceMotion = useReducedMotion();
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: reduceMotion ? 0 : 0.09,
-        delayChildren: reduceMotion ? 0 : 0.1,
-      },
-    },
+  const movePortraitReveal = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--reveal-opacity", "1");
+    event.currentTarget.style.setProperty(
+      "--reveal-x",
+      `${event.clientX - rect.left}px`
+    );
+    event.currentTarget.style.setProperty(
+      "--reveal-y",
+      `${event.clientY - rect.top}px`
+    );
   };
-
-  const childVariants = {
+  const hidePortraitReveal = (event: ReactPointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.setProperty("--reveal-opacity", "0");
+  };
+  const reveal = {
     hidden: { opacity: 0, y: reduceMotion ? 0 : 28 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: reduceMotion ? 0.2 : 0.7, ease: EASE_OUT_QUINT },
+      transition: {
+        duration: reduceMotion ? 0.15 : 0.75,
+        ease: EASE_OUT_QUINT,
+      },
     },
   };
 
   return (
-    <section className="relative bg-foreground text-background overflow-hidden">
+    <section className="relative isolate min-h-[calc(100svh-3.5rem)] overflow-hidden bg-hero-background text-hero-foreground">
       <HeroCanvas />
-      <div className="relative container max-w-4xl mx-auto px-6 md:px-4 pt-16 pb-16 md:pt-24 md:pb-20">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="flex flex-col-reverse md:flex-row md:items-end md:justify-between gap-12 md:gap-8">
-            <div className="min-w-0">
-              <motion.p
-                className="font-display text-base md:text-lg text-background/70 mb-4"
-                variants={childVariants}
-              >
-                Software Engineer
-              </motion.p>
-              <motion.h1
-                className="font-display text-[clamp(3rem,11vw,6rem)] leading-[0.95]"
-                variants={childVariants}
-              >
-                {personalInfo.name}.
-              </motion.h1>
-              <motion.p
-                className="mt-6 flex items-center gap-2 text-sm text-background/80"
-                variants={childVariants}
-              >
-                <MapPin className="h-4 w-4" aria-hidden="true" />
-                {personalInfo.location}
-              </motion.p>
-            </div>
+      <div className="hero-scrim absolute inset-0" aria-hidden="true" />
 
-            <motion.div
-              className="shrink-0 self-center md:self-auto"
-              variants={childVariants}
-            >
-              <div className="relative group cursor-crosshair">
-                <div
-                  className="absolute -bottom-3 -right-3 h-full w-full bg-background transition-transform duration-300 ease-out group-hover:translate-x-1.5 group-hover:translate-y-1.5"
-                  aria-hidden="true"
-                />
-                <img
-                  src={personalInfo.profilePicture}
-                  alt={`Portrait of ${personalInfo.name}`}
-                  width="460"
-                  height="460"
-                  decoding="async"
-                  className="relative w-44 md:w-56 aspect-square object-cover grayscale contrast-110 transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:-translate-x-1 group-hover:-translate-y-1"
-                />
-              </div>
-            </motion.div>
-          </div>
+      <motion.div
+        className="relative mx-auto grid min-h-[calc(100svh-3.5rem)] max-w-6xl items-center gap-9 px-6 py-10 md:grid-cols-[1.3fr_0.7fr] md:gap-14 md:px-8 md:py-16"
+        initial="hidden"
+        animate="visible"
+        transition={{
+          staggerChildren: reduceMotion ? 0 : 0.09,
+          delayChildren: reduceMotion ? 0 : 0.08,
+        }}
+      >
+        <div className="min-w-0">
+          <motion.div
+            className="mb-5 flex items-center gap-3 text-sm font-semibold text-hero-foreground/80"
+            variants={reveal}
+          >
+            <span className="h-3 w-3 bg-coral" aria-hidden="true" />
+            Software engineer · Product builder
+          </motion.div>
+
+          <motion.h1
+            className="font-display max-w-[9ch] text-[clamp(3.8rem,11vw,6rem)] leading-[0.88] tracking-[0.01em]"
+            variants={reveal}
+          >
+            Rishikesh <span className="text-coral">S.</span>
+          </motion.h1>
 
           <motion.p
-            className="mt-12 max-w-[65ch] leading-relaxed text-background/80"
-            variants={childVariants}
+            className="mt-5 flex items-center gap-2 text-sm font-medium text-hero-foreground/75"
+            variants={reveal}
+          >
+            <MapPin className="h-4 w-4 text-coral" aria-hidden="true" />
+            {personalInfo.location} · Working everywhere
+          </motion.p>
+
+          <motion.p
+            className="mt-7 max-w-[55ch] text-base leading-relaxed text-hero-foreground/82 md:text-lg"
+            variants={reveal}
           >
             {personalInfo.heroDescription}
           </motion.p>
 
           <motion.div
-            className="mt-8 flex flex-wrap gap-3"
-            variants={childVariants}
+            className="mt-7 flex flex-wrap gap-2.5"
+            variants={reveal}
           >
-            {contactLinks.map(({ label, href, icon: Icon, external }) => (
+            {contactLinks.map(({ label, href, icon: Icon, external }, index) => (
               <a
                 key={label}
                 href={href}
                 {...(external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="inline-flex min-h-11 items-center gap-2 border border-background/50 px-4 py-2 text-sm font-medium hover:bg-background hover:border-background hover:text-foreground transition-colors"
+                className={`group inline-flex min-h-11 items-center gap-2 px-4 py-2.5 text-sm font-bold transition-transform duration-300 ease-out hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hero-foreground ${
+                  index === 0
+                    ? "bg-coral text-ink"
+                    : "border border-hero-foreground/45 bg-hero-background/30 text-hero-foreground hover:border-hero-foreground hover:bg-hero-foreground hover:text-hero-background"
+                }`}
               >
                 <Icon className="h-4 w-4" aria-hidden="true" />
                 {label}
               </a>
             ))}
           </motion.div>
+
+          <motion.p
+            className="mt-7 flex items-center gap-2 text-xs font-semibold text-hero-foreground/55 md:hidden"
+            variants={reveal}
+          >
+            <ArrowDownRight className="h-4 w-4 text-coral" aria-hidden="true" />
+            Tap or drag anywhere to bend the signal
+          </motion.p>
+        </div>
+
+        <motion.div
+          className="relative mx-auto w-44 md:w-full md:max-w-[330px]"
+          variants={reveal}
+        >
+          <div
+            className="absolute -inset-3 translate-x-5 translate-y-5 bg-coral/85"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute -inset-3 -translate-x-5 -translate-y-5 border border-hero-foreground/45"
+            aria-hidden="true"
+          />
+          <div
+            className="portrait-reveal relative aspect-square overflow-hidden"
+            onPointerMove={movePortraitReveal}
+            onPointerLeave={hidePortraitReveal}
+          >
+            <img
+              src={personalInfo.profilePicture}
+              alt={`Portrait of ${personalInfo.name}`}
+              width="460"
+              height="460"
+              decoding="async"
+              fetchPriority="high"
+              className="h-full w-full object-cover grayscale contrast-110"
+            />
+            <img
+              src={personalInfo.profilePicture}
+              alt=""
+              width="460"
+              height="460"
+              decoding="async"
+              aria-hidden="true"
+              className="portrait-reveal-color absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

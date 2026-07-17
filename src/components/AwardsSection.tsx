@@ -4,28 +4,28 @@ import SectionHeading from "./SectionHeading";
 
 export default function AwardsSection() {
   return (
-    <section id="awards" className="py-16 md:py-20 scroll-mt-16">
-      <div className="container max-w-4xl mx-auto px-6 md:px-4">
+    <section id="awards" className="scroll-mt-16 bg-acid py-20 text-ink md:py-28">
+      <div className="mx-auto max-w-6xl px-6 md:px-8">
         <MotionWrapper>
-          <SectionHeading>Awards</SectionHeading>
+          <SectionHeading>Things We Won</SectionHeading>
         </MotionWrapper>
 
-        <div className="border-y border-border divide-y divide-border">
+        <div className="border-y-2 border-ink divide-y divide-ink/35">
           {awards.map((award, index) => (
             <MotionWrapper key={award.name + award.date} delay={index * 0.04}>
-              <div className="py-4 flex flex-col md:flex-row md:items-baseline gap-x-8 gap-y-1.5">
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold">{award.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">
+              <div className="grid gap-3 py-5 md:grid-cols-[1fr_auto] md:items-center md:gap-8 md:py-6">
+                <div className="min-w-0">
+                  <h3 className="text-lg font-black md:text-xl">{award.name}</h3>
+                  <p className="mt-0.5 text-sm text-ink/65">
                     {award.issuer}
                   </p>
                 </div>
-                <div className="flex items-baseline gap-x-6 text-sm shrink-0">
-                  <span className="text-muted-foreground">{award.type}</span>
-                  <span className="text-muted-foreground tabular-nums">
+                <div className="flex flex-wrap items-center gap-2 text-sm md:justify-end">
+                  <span className="font-semibold text-ink/60">{award.type}</span>
+                  <span className="font-semibold tabular-nums text-ink/60">
                     {award.date}
                   </span>
-                  <span className="bg-foreground text-background font-semibold px-2 py-0.5 md:min-w-36 md:text-center">
+                  <span className="bg-ink px-3 py-1.5 font-black text-white md:min-w-40 md:text-center">
                     {award.position}
                   </span>
                 </div>

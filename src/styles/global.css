@@ -1,23 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  /* Light — pure paper, pure ink. Zero chroma everywhere; type does the talking. */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.3 0 0);
-  --primary: oklch(0.3 0 0);
-  --muted-foreground: oklch(0.47 0 0);
-  --border: oklch(0.89 0 0);
-  --ring: oklch(0.3 0 0);
+  --background: oklch(0.97 0 0);
+  --foreground: oklch(0.18 0 0);
+  --primary: oklch(0.62 0.24 28);
+  --muted-foreground: oklch(0.43 0 0);
+  --border: oklch(0.78 0 0);
+  --ring: oklch(0.62 0.24 28);
+  --ember: oklch(0.62 0.24 28);
+  --coral: oklch(0.68 0.23 28);
+  --acid: oklch(0.88 0.22 125);
+  --sun: oklch(0.83 0.18 75);
+  --ink: oklch(0.15 0 0);
+  --mist: oklch(0.92 0 0);
+  --hero-background: oklch(0.95 0.01 95);
+  --hero-foreground: var(--ink);
 }
 
 .dark {
-  /* Dark — the same page, inverted. */
-  --background: oklch(0.23 0 0);
-  --foreground: oklch(0.94 0 0);
-  --primary: oklch(0.94 0 0);
-  --muted-foreground: oklch(0.71 0 0);
-  --border: oklch(0.38 0 0);
-  --ring: oklch(0.94 0 0);
+  --background: oklch(0.17 0 0);
+  --foreground: oklch(0.95 0 0);
+  --primary: oklch(0.72 0.2 30);
+  --muted-foreground: oklch(0.75 0 0);
+  --border: oklch(0.34 0 0);
+  --ring: oklch(0.72 0.2 30);
+  --mist: oklch(0.24 0 0);
+  --hero-background: oklch(0.11 0.03 35);
+  --hero-foreground: oklch(0.98 0 0);
 }
 
 @theme inline {
@@ -27,6 +36,14 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
+  --color-ember: var(--ember);
+  --color-coral: var(--coral);
+  --color-acid: var(--acid);
+  --color-sun: var(--sun);
+  --color-ink: var(--ink);
+  --color-mist: var(--mist);
+  --color-hero-background: var(--hero-background);
+  --color-hero-foreground: var(--hero-foreground);
   --font-sans: "Archivo", system-ui, sans-serif;
 }
 
@@ -35,7 +52,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-clip;
   }
   h1,
   h2,
@@ -43,7 +60,8 @@
     text-wrap: balance;
   }
   ::selection {
-    background-color: color-mix(in oklch, var(--foreground) 25%, transparent);
+    color: var(--ink);
+    background-color: var(--sun);
   }
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -55,6 +73,72 @@
       scroll-behavior: auto !important;
     }
   }
+}
+
+.bg-coral::selection,
+.bg-coral ::selection {
+  color: var(--coral);
+  background-color: var(--ink);
+}
+
+.bg-ember::selection,
+.bg-ember ::selection {
+  color: var(--ember);
+  background-color: var(--ink);
+}
+
+.bg-acid::selection,
+.bg-acid ::selection {
+  color: var(--acid);
+  background-color: var(--ink);
+}
+
+.bg-ink::selection,
+.bg-ink ::selection,
+.bg-foreground::selection,
+.bg-foreground ::selection {
+  color: var(--ink);
+  background-color: var(--sun);
+}
+
+.hero-scrim {
+  background:
+    linear-gradient(90deg, rgb(248 248 243 / 0.65) 0%, rgb(248 248 243 / 0.18) 52%, transparent 100%),
+    linear-gradient(0deg, rgb(248 248 243 / 0.14) 0%, transparent 45%);
+}
+
+.dark .hero-scrim {
+  background:
+    linear-gradient(90deg, rgb(14 8 4 / 0.88) 0%, rgb(14 8 4 / 0.46) 52%, rgb(14 8 4 / 0.12) 100%),
+    linear-gradient(0deg, rgb(14 8 4 / 0.72) 0%, transparent 45%);
+}
+
+@media (max-width: 767px) {
+  .hero-scrim {
+    background: linear-gradient(0deg, rgb(248 248 243 / 0.62) 0%, rgb(248 248 243 / 0.1) 100%);
+  }
+
+  .dark .hero-scrim {
+    background: linear-gradient(0deg, rgb(14 8 4 / 0.84) 0%, rgb(14 8 4 / 0.28) 100%);
+  }
+}
+
+.portrait-reveal {
+  --reveal-x: 50%;
+  --reveal-y: 50%;
+  --reveal-opacity: 0;
+}
+
+.portrait-reveal-color {
+  opacity: var(--reveal-opacity);
+  filter: saturate(1.08) contrast(1.02);
+  mask-image: radial-gradient(
+    circle clamp(4.5rem, 9vw, 7rem) at var(--reveal-x) var(--reveal-y),
+    black 25%,
+    rgb(0 0 0 / 0.9) 55%,
+    transparent 100%
+  );
+  transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Display voice: Anton — condensed poster caps. */
