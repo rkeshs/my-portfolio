@@ -141,6 +141,13 @@
   transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+@media (hover: none), (pointer: coarse) {
+  .portrait-reveal-color {
+    opacity: 1;
+    mask-image: none;
+  }
+}
+
 /* Display voice: Anton — condensed poster caps. */
 @utility font-display {
   font-family: "Anton", "Archivo", system-ui, sans-serif;

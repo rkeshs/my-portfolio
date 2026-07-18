@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Rishikesh S",
   location: "Coimbatore, India",
   email: "rkesh2003@gmail.com",
-  github: "https://github.com/rishikesh2003",
+  github: "https://github.com/rkeshs",
   linkedin: "https://www.linkedin.com/in/rishikeshs/",
   profilePicture: "/profile.jpg",
   heroDescription:

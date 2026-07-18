@@ -13,7 +13,7 @@ export default function EducationSection() {
         <div>
           {education.map((edu) => (
             <MotionWrapper key={edu.institution}>
-              <div className="grid gap-8 border-y-2 border-foreground py-8 md:grid-cols-[1.15fr_0.85fr] md:py-12">
+              <div className="grid gap-8 border-b-2 border-foreground py-8 md:grid-cols-[1.15fr_0.85fr] md:py-12">
                 <div>
                   <p className="font-display text-xl text-ember">{edu.period}</p>
                   <h3 className="mt-3 max-w-xl text-3xl font-black tracking-tight md:text-5xl">

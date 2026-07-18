@@ -10,7 +10,7 @@ export default function AwardsSection() {
           <SectionHeading>Things We Won</SectionHeading>
         </MotionWrapper>
 
-        <div className="border-y-2 border-ink divide-y divide-ink/35">
+        <div className="divide-y divide-ink/35 border-b-2 border-ink">
           {awards.map((award, index) => (
             <MotionWrapper key={award.name + award.date} delay={index * 0.04}>
               <div className="grid gap-3 py-5 md:grid-cols-[1fr_auto] md:items-center md:gap-8 md:py-6">

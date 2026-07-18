@@ -1,6 +1,5 @@
 import { personalInfo } from "@/lib/data";
 import {
-  ArrowDownRight,
   BriefcaseBusiness as Linkedin,
   Code2 as Github,
   Mail,
@@ -76,7 +75,7 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.h1
-            className="font-display max-w-[9ch] text-[clamp(3.8rem,11vw,6rem)] leading-[0.88] tracking-[0.01em]"
+            className="font-display whitespace-nowrap text-[clamp(2.5rem,11vw,5.5rem)] leading-[0.88] tracking-[0.01em] md:text-[clamp(3.8rem,6.5vw,5.5rem)]"
             variants={reveal}
           >
             Rishikesh <span className="text-coral">S.</span>
@@ -120,13 +119,6 @@ export default function HeroSection() {
             ))}
           </motion.div>
 
-          <motion.p
-            className="mt-7 flex items-center gap-2 text-xs font-semibold text-hero-foreground/55 md:hidden"
-            variants={reveal}
-          >
-            <ArrowDownRight className="h-4 w-4 text-coral" aria-hidden="true" />
-            Tap or drag anywhere to bend the signal
-          </motion.p>
         </div>
 
         <motion.div
@@ -153,7 +145,8 @@ export default function HeroSection() {
               height="460"
               decoding="async"
               fetchPriority="high"
-              className="h-full w-full object-cover grayscale contrast-110"
+              draggable={false}
+              className="pointer-events-none h-full w-full select-none object-cover grayscale contrast-110"
             />
             <img
               src={personalInfo.profilePicture}
@@ -162,7 +155,8 @@ export default function HeroSection() {
               height="460"
               decoding="async"
               aria-hidden="true"
-              className="portrait-reveal-color absolute inset-0 h-full w-full object-cover"
+              draggable={false}
+              className="portrait-reveal-color pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
             />
           </div>
         </motion.div>

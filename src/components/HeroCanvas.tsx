@@ -249,11 +249,13 @@ export default function HeroCanvas() {
       attributes: true,
       attributeFilter: ["class"],
     });
-    window.addEventListener("pointerdown", onPointerDown, { passive: true });
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    window.addEventListener("pointerup", releasePointer, { passive: true });
-    window.addEventListener("pointercancel", releasePointer, { passive: true });
-    window.addEventListener("pointerleave", releasePointer, { passive: true });
+    if (!coarsePointer) {
+      window.addEventListener("pointerdown", onPointerDown, { passive: true });
+      window.addEventListener("pointermove", onPointerMove, { passive: true });
+      window.addEventListener("pointerup", releasePointer, { passive: true });
+      window.addEventListener("pointercancel", releasePointer, { passive: true });
+      window.addEventListener("pointerleave", releasePointer, { passive: true });
+    }
     document.addEventListener("visibilitychange", onVisibilityChange);
     resize();
     render(0);
@@ -263,11 +265,13 @@ export default function HeroCanvas() {
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       themeObserver.disconnect();
-      window.removeEventListener("pointerdown", onPointerDown);
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerup", releasePointer);
-      window.removeEventListener("pointercancel", releasePointer);
-      window.removeEventListener("pointerleave", releasePointer);
+      if (!coarsePointer) {
+        window.removeEventListener("pointerdown", onPointerDown);
+        window.removeEventListener("pointermove", onPointerMove);
+        window.removeEventListener("pointerup", releasePointer);
+        window.removeEventListener("pointercancel", releasePointer);
+        window.removeEventListener("pointerleave", releasePointer);
+      }
       document.removeEventListener("visibilitychange", onVisibilityChange);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
