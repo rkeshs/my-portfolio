@@ -11,6 +11,7 @@ A responsive portfolio template built with Astro 7, React 19, Tailwind CSS 4, an
 - Reduced-motion support
 - Static Astro output with Vercel Analytics
 - Content managed from one TypeScript file
+- Type-safe MDX blog with sitemap generation
 
 ## Requirements
 
@@ -47,6 +48,23 @@ Copy `.env.example` to `.env` when you need production URL generation locally. S
 ## Update portfolio content
 
 Edit [`src/lib/data.ts`](src/lib/data.ts) to update personal details, work experience, skills, projects, awards, and education. Replace the image referenced by `personalInfo.profilePicture` to update the portrait.
+
+## Publish a blog post
+
+Add an `.md` or `.mdx` file under [`src/content/blog`](src/content/blog) with this frontmatter:
+
+```yaml
+---
+title: "Post title"
+description: "A concise summary for lists and search results."
+pubDate: 2026-07-18
+draft: true
+---
+```
+
+Set `draft` to `false` to include the post in `/blog`, static article routes, and the sitemap. An optional `updatedDate` accepts the same date format.
+
+Set `ORIGIN` to the public site URL in production. Astro uses it for canonical links and sitemap generation.
 
 ## Production verification
 

@@ -1,0 +1,70 @@
+---
+import { render } from "astro:content";
+import Footer from "@/components/Footer";
+import GlassHeader from "@/components/GlassHeader";
+import Layout from "@/layouts/Layout.astro";
+import { formatPostDate, getPublishedPosts, type BlogPost } from "@/lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout
+  title={`${post.data.title} | Rishikesh S`}
+  description={post.data.description}
+  type="article"
+  publishedTime={post.data.pubDate}
+  {...(post.data.updatedDate ? { updatedTime: post.data.updatedDate } : {})}
+>
+  <div class="sticky top-0 z-50">
+    <GlassHeader client:load />
+  </div>
+  <main class="min-h-screen">
+    <article class="mx-auto max-w-4xl px-6 py-16 md:px-8 md:py-24">
+      <header class="border-b-2 border-foreground pb-8 md:pb-10">
+        <a
+          href="/blog"
+          class="text-sm font-black uppercase tracking-[0.16em] text-coral transition-colors hover:text-foreground"
+        >
+          &larr; All posts
+        </a>
+        <h1 class="mt-5 font-display text-5xl leading-[0.95] sm:text-6xl md:text-7xl">
+          {post.data.title}
+        </h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+          {post.data.description}
+        </p>
+        <div class="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+          <time datetime={post.data.pubDate.toISOString()}>
+            Published {formatPostDate(post.data.pubDate)}
+          </time>
+          {
+            post.data.updatedDate && (
+              <time datetime={post.data.updatedDate.toISOString()}>
+                Updated {formatPostDate(post.data.updatedDate)}
+              </time>
+            )
+          }
+        </div>
+      </header>
+
+      <div class="prose pt-10 md:pt-14">
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Footer client:load />
+</Layout>

@@ -1,0 +1,78 @@
+---
+import Footer from "@/components/Footer";
+import GlassHeader from "@/components/GlassHeader";
+import Layout from "@/layouts/Layout.astro";
+import { formatPostDate, getPublishedPosts } from "@/lib/blog";
+
+const posts = await getPublishedPosts();
+---
+
+<Layout
+  title="Blog | Rishikesh S"
+  description="Notes on software engineering, systems, and building reliable products."
+>
+  <div class="flex min-h-screen flex-col">
+    <div class="sticky top-0 z-50">
+      <GlassHeader client:load />
+    </div>
+    <main class="flex-1">
+      <header>
+        <div class="mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-20">
+          <h1 class="font-display text-[clamp(4rem,15vw,6rem)] leading-[0.85]">Blog</h1>
+        </div>
+      </header>
+
+      <section class="mx-auto max-w-6xl px-6 py-12 md:px-8 md:py-16" aria-label="Blog posts">
+        <div>
+          {
+            posts.length > 0 ? (
+              <ol class="grid gap-6 md:grid-cols-2">
+                {posts.map((post, index) => (
+                  <li class="h-full">
+                    <article class="h-full">
+                      <a
+                        href={`/blog/${post.id}/`}
+                        class="group flex min-h-80 h-full flex-col border border-border p-6 transition-colors hover:border-coral hover:bg-mist/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background md:p-8"
+                      >
+                        <div class="flex items-start justify-between gap-6">
+                          <span
+                            class="font-display text-2xl leading-none text-muted-foreground transition-colors group-hover:text-coral"
+                            aria-hidden="true"
+                          >
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <span
+                            class="text-3xl leading-none transition-transform duration-300 ease-out group-hover:translate-x-1"
+                            aria-hidden="true"
+                          >
+                            &rarr;
+                          </span>
+                        </div>
+
+                        <time
+                          datetime={post.data.pubDate.toISOString()}
+                          class="mt-12 block text-xs font-black uppercase tracking-[0.12em] text-coral"
+                        >
+                          {formatPostDate(post.data.pubDate)}
+                        </time>
+                        <h2 class="mt-3 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[0.95] transition-colors group-hover:text-coral">
+                          {post.data.title}
+                        </h2>
+                        <p class="mt-4 max-w-2xl leading-7 text-muted-foreground">
+                          {post.data.description}
+                        </p>
+                      </a>
+                    </article>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p class="border-b-2 border-foreground py-12 text-muted-foreground">No posts yet.</p>
+            )
+          }
+        </div>
+      </section>
+    </main>
+    <Footer client:load />
+  </div>
+</Layout>

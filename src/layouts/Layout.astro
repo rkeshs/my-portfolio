@@ -6,12 +6,19 @@ import { personalInfo } from "@/lib/data";
 interface Props {
   title?: string;
   description?: string;
+  type?: "website" | "article";
+  publishedTime?: Date;
+  updatedTime?: Date;
 }
 
 const {
   title = `${personalInfo.name} | Software Engineer`,
   description = `${personalInfo.name} builds reliable applications, backend systems, data platforms, cloud services, and AI-powered automation.`,
+  type = "website",
+  publishedTime,
+  updatedTime,
 } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 ---
 
 <!doctype html>
@@ -25,6 +32,26 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={personalInfo.name} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {
+      type === "article" && publishedTime && (
+        <meta property="article:published_time" content={publishedTime.toISOString()} />
+      )
+    }
+    {
+      type === "article" && updatedTime && (
+        <meta property="article:modified_time" content={updatedTime.toISOString()} />
+      )
+    }
+    {type === "article" && <meta property="article:author" content={personalInfo.name} />}
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

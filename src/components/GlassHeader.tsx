@@ -10,11 +10,12 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { useState } from "react";
 
 const NAV_ITEMS = [
-  { label: "Experience", id: "experience" },
-  { label: "Work", id: "work" },
-  { label: "Skills", id: "skills" },
-  { label: "Awards", id: "awards" },
-  { label: "Education", id: "education" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Work", href: "/#work" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Awards", href: "/#awards" },
+  { label: "Education", href: "/#education" },
+  { label: "Blog", href: "/blog/" },
 ] as const;
 
 export default function GlassHeader() {
@@ -40,8 +41,8 @@ export default function GlassHeader() {
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           {NAV_ITEMS.map((item) => (
             <a
-              key={item.id}
-              href={`#${item.id}`}
+              key={item.href}
+              href={item.href}
               className="flex min-h-11 items-center px-1.5 text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.label}
@@ -96,8 +97,8 @@ export default function GlassHeader() {
           <nav className="mx-auto flex max-w-6xl flex-col gap-0 px-6 py-4 font-display text-3xl">
             {NAV_ITEMS.map((item) => (
               <a
-                key={item.id}
-                href={`#${item.id}`}
+                key={item.href}
+                href={item.href}
                 className="flex min-h-14 items-center border-b border-ink/30 text-ink transition-transform hover:translate-x-2"
                 onClick={toggleMenu}
               >

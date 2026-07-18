@@ -14,6 +14,7 @@
 - Preserve unrelated working-tree changes and keep diffs narrowly scoped.
 - Reuse existing components and data structures before adding helpers or dependencies.
 - Keep portfolio content in `src/lib/data.ts`; keep pages focused on composition.
+- Keep blog posts in `src/content/blog` and conform their frontmatter to `src/content.config.ts`.
 - Do not edit generated `.astro/` or `dist/` files.
 
 ## TypeScript and React
