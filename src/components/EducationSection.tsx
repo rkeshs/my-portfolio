@@ -19,8 +19,8 @@ export default function EducationSection() {
                   <h3 className="mt-3 max-w-xl text-3xl font-black tracking-tight md:text-5xl">
                     {edu.degree}
                   </h3>
-                  <p className="mt-4 max-w-lg font-semibold text-muted-foreground">
-                    {edu.institution}
+                  <p className="mt-4 max-w-xl font-semibold text-muted-foreground">
+                    {edu.institution} · {edu.location}
                   </p>
                 </div>
 

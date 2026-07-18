@@ -9,7 +9,9 @@ export default function Footer() {
         <div className="flex flex-col gap-8 border-t-2 border-ink pt-7 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-display text-4xl md:text-6xl">{personalInfo.name}</p>
-            <p className="mt-2 text-sm font-semibold text-ink/70">Built with stubborn curiosity.</p>
+            <p className="mt-2 text-sm font-semibold text-ink/70">
+              Building reliable products from idea to production.
+            </p>
             <p className="mt-5 text-xs text-ink/60">&copy; {new Date().getFullYear()}</p>
           </div>
           <div className="flex items-center gap-2">

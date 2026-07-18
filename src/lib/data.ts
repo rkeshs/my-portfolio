@@ -3,9 +3,10 @@ export const personalInfo = {
   email: "rkesh2003@gmail.com",
   github: "https://github.com/rkeshs",
   linkedin: "https://www.linkedin.com/in/rishikeshs/",
+  resume: "/Rishikesh_S_Software_Engineer_Resume.pdf",
   profilePicture: "/profile.jpg",
   heroDescription:
-    "I turn complex product problems into dependable software for web, mobile, and cloud. I build systems that help people get important work done simply and reliably.",
+    "I build reliable software from the first requirement to production. My work spans web applications, backend systems, data, payments, and automation. I also build the safeguards and recovery tools that keep products running.",
 };
 
 export const workExperience = [
@@ -15,37 +16,50 @@ export const workExperience = [
     position: "Software Engineer",
     period: "Mar 2024 - Present",
     achievements: [
-      "Built and maintained AWS Lambda services with the Serverless Framework for reliable backend operations.",
-      "Built an admin platform and CMS for teams to manage content, user data, and analytics.",
-      "Reduced database costs and query times by introducing materialized views.",
-      "Delivered affiliate tracking and text-to-speech features across the frontend and backend.",
+      "Deliver production features end to end across customer applications, internal tools, backend services, databases, and cloud jobs, from system design through testing, deployment, monitoring, and support.",
+      "Replaced legacy consent records with a searchable event model using repeatable migrations, transactions, batching, duplicate prevention, exports, and recovery tools.",
+      "Built platform capabilities for AI-assisted onboarding, multilingual and voice workflows, and SMS messaging with delivery receipts, batching, and streaming.",
+      "Built internal administration and content tools, introduced materialized views for heavy queries, and shipped affiliate tracking across frontend and backend systems.",
+      "Built release safeguards with typed contracts, automated tests, CI/CD, feature flags, monitoring, and targeted repair tools.",
+    ],
+    stack: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Bun",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Redis",
+      "AWS Lambda",
+      "Stripe Connect",
+      "Trigger.dev",
+      "Remotion",
+      "Tinybird",
+      "Vitest",
+      "Playwright",
+      "GitHub Actions",
+      "Sentry",
+      "PostHog",
     ],
   },
   {
     company: "DevCrew",
-    location: "India",
-    position: "Software Engineer",
+    location: "Coimbatore, India",
+    position: "Freelance Software Developer",
     period: "Mar 2023 - Mar 2024",
     achievements: [
-      "Built responsive React interfaces and improved application performance.",
-      "Improved load times and data-fetching efficiency by optimizing JavaScript.",
+      "Built responsive React interfaces and JavaScript features across client projects.",
+      "Improved load times and data-fetching efficiency by optimizing frontend code.",
     ],
-  },
-  {
-    company: "Phoenitags",
-    location: "India",
-    position: "Software Engineering Intern",
-    period: "Jan 2023 - Mar 2023",
-    achievements: [
-      "Built reusable React interfaces with a focus on responsiveness and performance.",
-      "Implemented authentication and real-time product features in JavaScript.",
-    ],
+    stack: ["JavaScript", "React", "HTML & CSS", "REST APIs"],
   },
 ];
 
 export const education = [
   {
     institution: "Sri Krishna College of Engineering and Technology",
+    location: "Coimbatore, India",
     degree: "Bachelor of Technology in Information Technology",
     period: "Jun 2021 - Jun 2025",
     achievements: [
@@ -58,58 +72,71 @@ export const education = [
 ];
 export const skills = [
   {
-    label: "Core stack",
-    items: ["TypeScript", "React", "Node.js", "PostgreSQL", "AWS"],
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "Java", "C++"],
   },
   {
-    label: "Frontend",
-    items: ["Next.js", "React Native", "Tailwind CSS", "shadcn/ui"],
+    label: "Applications",
+    items: ["React", "Next.js", "React Native", "Node.js", "Bun"],
   },
   {
     label: "Backend & data",
-    items: ["Express", "Drizzle", "Zod", "Tinybird"],
+    items: ["API design", "PostgreSQL", "Redis", "Drizzle ORM", "FastAPI", "Spring Boot"],
   },
   {
-    label: "Product tools",
-    items: ["Sanity", "Clerk", "Sentry", "Mixpanel", "Trigger.dev"],
+    label: "Cloud & systems",
+    items: ["AWS Lambda", "Docker", "Linux", "Serverless Framework", "Background jobs"],
+  },
+  {
+    label: "AI & automation",
+    items: ["AI APIs", "AI agents", "RAG", "Trigger.dev", "Remotion", "Text-to-Speech"],
+  },
+  {
+    label: "Quality & delivery",
+    items: ["Vitest", "Playwright", "GitHub Actions", "Sentry", "PostHog", "Tinybird"],
   },
 ];
 
-export const projects = [
+export const selectedWork = [
   {
-    title: "Net Zero Carbon Emissions",
-    github: "https://github.com/rishikesh2003/Prodigi",
+    title: "Automated media workflows",
+    context: "Production automation",
     summary:
-      "A connected system that turns occupancy and emissions data into practical carbon-reduction decisions.",
-    stack: ["WiFi RTT", "IoT", "React", "Node.js"],
+      "An event-driven production pipeline that combines AI APIs, voice generation, distributed video rendering, and scheduled publishing.",
+    stack: ["TypeScript", "Remotion", "Trigger.dev", "AWS Lambda", "AI APIs", "Text-to-Speech"],
     description: [
-      "Tracked indoor occupancy with WiFi RTT to optimize energy use in real time.",
-      "Connected food-waste and emissions monitoring into one operational view.",
-      "Designed a QR-based green-points loop that rewarded better everyday decisions.",
+      "Orchestrated long-running jobs across Trigger.dev and AWS Lambda for AI generation, voice synthesis, Remotion rendering, cleanup, progress tracking, and publishing.",
+      "Integrated AI APIs and text-to-speech services behind validated, typed contracts so assets could be generated and rendered consistently.",
+      "Added test-render tools, deployment workflows, monitoring, retries, and recovery tooling for failed or partial jobs.",
     ],
   },
   {
-    title: "Mental Aarog",
-    github: "https://github.com/rishikesh2003/mental-aarog",
+    title: "Employee insurance registration",
+    context: "Regulated workflows",
     summary:
-      "A privacy-conscious mental health platform that combines behavioral signals, assessments, and guided support.",
-    stack: ["React", "Supabase", "Flask", "Ethereum"],
+      "A production registration system that turns complex employee data and insurer rules into traceable submissions across multiple delivery channels.",
+    stack: ["TypeScript", "React", "PostgreSQL", "Provider APIs", "PDF & CSV", "Playwright"],
     description: [
-      "Brought PHQ-9 assessments, wearable data, and sentiment analysis into a single view.",
-      "Delivered guided meditation and contextual suggestions around sleep, food, travel, and media.",
-      "Used decentralized storage and an Ethereum-based rewards system to support privacy and continued engagement.",
+      "Designed connected workflows for employer forms, internal review tools, and provider-specific submission paths while keeping registration rules consistent across applications.",
+      "Built a shared pipeline for API, PDF, and CSV providers with validation, document generation, delivery records, and status handling.",
+      "Added German and English journeys, submission history, retry-safe delivery, artifact regeneration, and operator recovery tools for failed or partial submissions.",
+    ],
+  },
+  {
+    title: "Online store and payments",
+    context: "Commerce platform",
+    summary:
+      "A production commerce platform that handles store setup, connected payments, secure fulfillment, and seller operations for digital products.",
+    stack: ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Tinybird"],
+    description: [
+      "Built configurable store themes, the public storefront, seller administration, and secure support tools.",
+      "Designed Stripe Connect checkout and retry-safe fulfillment to protect delivery during retries and interrupted purchases.",
+      "Added product analytics, feature flags, secure impersonation controls, and end-to-end test coverage in CI.",
     ],
   },
 ];
 
 export const awards = [
-  {
-    name: "IEEE YESIST12 Hackathon",
-    issuer: "IEEE",
-    date: "Sep 2022",
-    type: "International",
-    position: "Second Place",
-  },
   {
     name: "Prodigi Cognizant Hackathon",
     issuer: "Cognizant",
@@ -125,31 +152,10 @@ export const awards = [
     position: "First Runner-up",
   },
   {
-    name: "Innovators Day",
-    issuer: "Sri Manakula Vinayagar Engineering College, Pondicherry",
+    name: "IEEE YESIST12 Hackathon",
+    issuer: "IEEE",
     date: "Sep 2022",
-    type: "National",
-    position: "First Prize",
-  },
-  {
-    name: "KG Hackfest'22",
-    issuer: "KGiSL Institute of Technology",
-    date: "Sep 2022",
-    type: "National",
-    position: "Second Prize",
-  },
-  {
-    name: "Innohacks'22",
-    issuer: "Innogeeks, KIET Group of Institutions, New Delhi",
-    date: "May 2022",
-    type: "National",
-    position: "Second Runner-up",
-  },
-  {
-    name: "Hack @ SKCET",
-    issuer: "Hackclub SKCET",
-    date: "Feb 2022",
-    type: "National",
-    position: "Most Impactful Hack",
+    type: "International",
+    position: "Second Place",
   },
 ];

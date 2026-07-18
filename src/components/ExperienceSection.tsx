@@ -5,15 +5,15 @@ import SectionHeading from "./SectionHeading";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="scroll-mt-16 bg-background py-20 md:py-28">
+    <section id="experience" className="scroll-mt-16 bg-background pb-12 pt-20 md:pb-16 md:pt-28">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <MotionWrapper>
           <SectionHeading>Work Experience</SectionHeading>
         </MotionWrapper>
         <MotionWrapper>
           <p className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            I build and improve product systems across web, mobile, and cloud, with a focus on
-            reliability, performance, and practical outcomes.
+            I work across the full product lifecycle: understanding the problem, designing the data,
+            building the feature, testing it, shipping it, and supporting it in production.
           </p>
         </MotionWrapper>
         <div>
@@ -31,6 +31,19 @@ export default function ExperienceSection() {
                   <li key={achievement} className="flex gap-3 leading-relaxed">
                     <span className="mt-[7px] h-2 w-2 shrink-0 bg-coral" aria-hidden="true" />
                     <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+              <ul
+                className="mt-5 flex flex-wrap gap-2"
+                aria-label={`${job.company} technology stack`}
+              >
+                {job.stack.map((technology) => (
+                  <li
+                    key={technology}
+                    className="border border-border px-3 py-1.5 text-xs font-bold text-muted-foreground"
+                  >
+                    {technology}
                   </li>
                 ))}
               </ul>

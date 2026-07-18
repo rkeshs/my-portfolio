@@ -1,5 +1,10 @@
 import { personalInfo } from "@/lib/data";
-import { GithubIcon, Linkedin01Icon, Mail01Icon } from "@hugeicons/core-free-icons";
+import {
+  DocumentAttachmentIcon,
+  GithubIcon,
+  Linkedin01Icon,
+  Mail01Icon,
+} from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { domAnimation, LazyMotion, m, useReducedMotion } from "framer-motion";
 import type { PointerEvent as ReactPointerEvent } from "react";
@@ -8,6 +13,13 @@ import HeroCanvas from "./HeroCanvas";
 const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
 
 const contactLinks = [
+  {
+    label: "View resume",
+    href: personalInfo.resume,
+    icon: DocumentAttachmentIcon,
+    external: true,
+    primary: true,
+  },
   { label: "Email", href: `mailto:${personalInfo.email}`, icon: Mail01Icon },
   { label: "GitHub", href: personalInfo.github, icon: GithubIcon, external: true },
   {
@@ -64,7 +76,7 @@ export default function HeroSection() {
               variants={reveal}
             >
               <span className="h-3 w-3 bg-coral" aria-hidden="true" />
-              Software engineer · Product builder
+              Software Engineer
             </m.div>
 
             <m.h1
@@ -82,13 +94,13 @@ export default function HeroSection() {
             </m.p>
 
             <m.div className="mt-7 flex flex-wrap gap-2.5" variants={reveal}>
-              {contactLinks.map(({ label, href, icon: Icon, external }, index) => (
+              {contactLinks.map(({ label, href, icon: Icon, external, primary }) => (
                 <a
                   key={label}
                   href={href}
                   {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className={`group inline-flex min-h-11 items-center gap-2 px-4 py-2.5 text-sm font-bold transition-transform duration-300 ease-out hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hero-foreground ${
-                    index === 0
+                    primary
                       ? "bg-coral text-ink"
                       : "border border-hero-foreground/45 bg-hero-background/30 text-hero-foreground hover:border-hero-foreground hover:bg-hero-foreground hover:text-hero-background"
                   }`}
