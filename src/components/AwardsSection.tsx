@@ -7,7 +7,7 @@ export default function AwardsSection() {
     <section id="awards" className="scroll-mt-16 bg-acid py-20 text-ink md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <MotionWrapper>
-          <SectionHeading>Things We Won</SectionHeading>
+          <SectionHeading>My Hackathon Wins</SectionHeading>
         </MotionWrapper>
 
         <div className="divide-y divide-ink border-b-2 border-ink">

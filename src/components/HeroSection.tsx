@@ -1,5 +1,5 @@
 import { personalInfo } from "@/lib/data";
-import { BriefcaseBusiness as Linkedin, Code2 as Github, Mail, MapPin } from "lucide-react";
+import { BriefcaseBusiness as Linkedin, Code2 as Github, Mail } from "lucide-react";
 import { domAnimation, LazyMotion, m, useReducedMotion } from "framer-motion";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import HeroCanvas from "./HeroCanvas";
@@ -74,15 +74,7 @@ export default function HeroSection() {
             </m.h1>
 
             <m.p
-              className="mt-5 flex items-center gap-2 text-sm font-medium text-hero-foreground/75"
-              variants={reveal}
-            >
-              <MapPin className="h-4 w-4 text-coral" aria-hidden="true" />
-              {personalInfo.location} · Working everywhere
-            </m.p>
-
-            <m.p
-              className="mt-7 max-w-[55ch] text-base leading-relaxed text-hero-foreground/82 md:text-lg"
+              className="mt-6 max-w-[55ch] text-base leading-relaxed text-hero-foreground/82 md:text-lg"
               variants={reveal}
             >
               {personalInfo.heroDescription}

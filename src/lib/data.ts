@@ -1,12 +1,11 @@
 export const personalInfo = {
   name: "Rishikesh S",
-  location: "Coimbatore, India",
   email: "rkesh2003@gmail.com",
   github: "https://github.com/rkeshs",
   linkedin: "https://www.linkedin.com/in/rishikeshs/",
   profilePicture: "/profile.jpg",
   heroDescription:
-    "I turn messy product problems into reliable software across web, mobile, and cloud. Currently building systems that help people get important work done without thinking about the machinery underneath.",
+    "I turn complex product problems into dependable software for web, mobile, and cloud. I build systems that help people get important work done simply and reliably.",
 };
 
 export const workExperience = [
@@ -16,30 +15,30 @@ export const workExperience = [
     position: "Software Engineer",
     period: "Mar 2024 - Present",
     achievements: [
-      "Engineered AWS Lambda business logic with the Serverless Framework for dependable backend operations.",
-      "Built an admin panel and scalable CMS for managing content, user data, and analytics.",
-      "Reduced database costs and query time by introducing materialized views.",
-      "Shipped affiliate tracking and text-to-speech integrations across the frontend and backend.",
+      "Built and maintained AWS Lambda services with the Serverless Framework for reliable backend operations.",
+      "Built an admin platform and CMS for teams to manage content, user data, and analytics.",
+      "Reduced database costs and query times by introducing materialized views.",
+      "Delivered affiliate tracking and text-to-speech features across the frontend and backend.",
     ],
   },
   {
     company: "DevCrew",
-    location: "Coimbatore, India",
+    location: "India",
     position: "Software Engineer",
     period: "Mar 2023 - Mar 2024",
     achievements: [
-      "Developed responsive frontend components using React.js, enhancing user experience and app performance.",
-      "Optimized JavaScript solutions to improve load times and data-fetching efficiency.",
+      "Built responsive React interfaces and improved application performance.",
+      "Improved load times and data-fetching efficiency by optimizing JavaScript.",
     ],
   },
   {
     company: "Phoenitags",
-    location: "Coimbatore, India",
+    location: "India",
     position: "Software Engineering Intern",
     period: "Jan 2023 - Mar 2023",
     achievements: [
-      "Built interactive UIs with React.js, focusing on reusable components and performance optimization.",
-      "Implemented JavaScript-based features like user authentication and real-time updates.",
+      "Built reusable React interfaces with a focus on responsiveness and performance.",
+      "Implemented authentication and real-time product features in JavaScript.",
     ],
   },
 ];
@@ -47,14 +46,13 @@ export const workExperience = [
 export const education = [
   {
     institution: "Sri Krishna College of Engineering and Technology",
-    location: "Coimbatore, India",
-    degree: "B Tech Information Technology",
+    degree: "Bachelor of Technology in Information Technology",
     period: "Jun 2021 - Jun 2025",
     achievements: [
-      "President of the Department of Information Technology",
-      "G20 student delegate",
-      "Organized multiple technical workshops and events",
-      "Represented my college in multiple national and international hackathons and won.",
+      "Served as President of the Department of Information Technology.",
+      "Represented the institution as a G20 student delegate.",
+      "Organized technical workshops and student events.",
+      "Represented the college at national and international hackathons, earning multiple awards.",
     ],
   },
 ];
@@ -72,7 +70,7 @@ export const skills = [
     items: ["Express", "Drizzle", "Zod", "Tinybird"],
   },
   {
-    label: "Platform",
+    label: "Product tools",
     items: ["Sanity", "Clerk", "Sentry", "Mixpanel", "Trigger.dev"],
   },
 ];
@@ -82,7 +80,7 @@ export const projects = [
     title: "Net Zero Carbon Emissions",
     github: "https://github.com/rishikesh2003/Prodigi",
     summary:
-      "A connected system that turns indoor activity into practical carbon-reduction decisions.",
+      "A connected system that turns occupancy and emissions data into practical carbon-reduction decisions.",
     stack: ["WiFi RTT", "IoT", "React", "Node.js"],
     description: [
       "Tracked indoor occupancy with WiFi RTT to optimize energy use in real time.",
@@ -94,12 +92,12 @@ export const projects = [
     title: "Mental Aarog",
     github: "https://github.com/rishikesh2003/mental-aarog",
     summary:
-      "A privacy-aware mental-health companion combining behavioral signals, assessments, and guided support.",
+      "A privacy-conscious mental health platform that combines behavioral signals, assessments, and guided support.",
     stack: ["React", "Supabase", "Flask", "Ethereum"],
     description: [
-      "Combined PHQ-9 assessments, wearable data, and sentiment signals for earlier intervention.",
+      "Brought PHQ-9 assessments, wearable data, and sentiment analysis into a single view.",
       "Delivered guided meditation and contextual suggestions around sleep, food, travel, and media.",
-      "Used decentralized storage and an Ethereum reward layer for secure, sustained engagement.",
+      "Used decentralized storage and an Ethereum-based rewards system to support privacy and continued engagement.",
     ],
   },
 ];
@@ -135,7 +133,7 @@ export const awards = [
   },
   {
     name: "KG Hackfest'22",
-    issuer: "KGiSL Institute of Technology, Coimbatore",
+    issuer: "KGiSL Institute of Technology",
     date: "Sep 2022",
     type: "National",
     position: "Second Prize",
@@ -149,7 +147,7 @@ export const awards = [
   },
   {
     name: "Hack @ SKCET",
-    issuer: "Hackclub SKCET, SKCET, Coimbatore",
+    issuer: "Hackclub SKCET",
     date: "Feb 2022",
     type: "National",
     position: "Most Impactful Hack",

@@ -58,9 +58,7 @@ export default function ProjectsSection() {
                 </div>
 
                 <div className={index % 2 ? "md:order-1" : ""}>
-                  <p className="mb-3 text-sm font-black text-ember">
-                    Built from problem to working system
-                  </p>
+                  <p className="mb-3 text-sm font-black text-ember">From idea to working product</p>
                   <h3 className="font-display text-[clamp(2.5rem,6vw,4.75rem)] leading-[0.92]">
                     {project.title}
                   </h3>
@@ -95,7 +93,7 @@ export default function ProjectsSection() {
                     className="group mt-8 inline-flex min-h-11 items-center gap-2 bg-foreground px-4 py-2.5 text-sm font-black text-background transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
                   >
                     <Github className="h-4 w-4" aria-hidden="true" />
-                    Explore the code
+                    View source code
                     <ArrowUpRight
                       className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
                       aria-hidden="true"

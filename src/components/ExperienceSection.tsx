@@ -12,8 +12,8 @@ export default function ExperienceSection() {
         </MotionWrapper>
         <MotionWrapper>
           <p className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Product engineering across fast-moving teams, complicated systems, and the unglamorous
-            details that make software dependable.
+            I build and improve product systems across web, mobile, and cloud, with a focus on
+            reliability, performance, and practical outcomes.
           </p>
         </MotionWrapper>
         <div>

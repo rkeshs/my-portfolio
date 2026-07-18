@@ -7,7 +7,7 @@ export default function EducationSection() {
     <section id="education" className="scroll-mt-16 bg-background py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <MotionWrapper>
-          <SectionHeading>Where It Started</SectionHeading>
+          <SectionHeading>Education & Leadership</SectionHeading>
         </MotionWrapper>
 
         <div>
@@ -20,7 +20,7 @@ export default function EducationSection() {
                     {edu.degree}
                   </h3>
                   <p className="mt-4 max-w-lg font-semibold text-muted-foreground">
-                    {edu.institution} · {edu.location}
+                    {edu.institution}
                   </p>
                 </div>
 
