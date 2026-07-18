@@ -1,5 +1,6 @@
 import { personalInfo } from "@/lib/data";
-import { BriefcaseBusiness as Linkedin, Code2 as Github, Mail } from "lucide-react";
+import { GithubIcon, Linkedin01Icon, Mail01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { domAnimation, LazyMotion, m, useReducedMotion } from "framer-motion";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import HeroCanvas from "./HeroCanvas";
@@ -7,12 +8,12 @@ import HeroCanvas from "./HeroCanvas";
 const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
 
 const contactLinks = [
-  { label: "Email", href: `mailto:${personalInfo.email}`, icon: Mail },
-  { label: "GitHub", href: personalInfo.github, icon: Github, external: true },
+  { label: "Email", href: `mailto:${personalInfo.email}`, icon: Mail01Icon },
+  { label: "GitHub", href: personalInfo.github, icon: GithubIcon, external: true },
   {
     label: "LinkedIn",
     href: personalInfo.linkedin,
-    icon: Linkedin,
+    icon: Linkedin01Icon,
     external: true,
   },
 ];
@@ -92,7 +93,12 @@ export default function HeroSection() {
                       : "border border-hero-foreground/45 bg-hero-background/30 text-hero-foreground hover:border-hero-foreground hover:bg-hero-foreground hover:text-hero-background"
                   }`}
                 >
-                  <Icon className="h-4 w-4" aria-hidden="true" />
+                  <HugeiconsIcon
+                    icon={Icon}
+                    className="h-4 w-4"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
                   {label}
                 </a>
               ))}

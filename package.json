@@ -23,12 +23,13 @@
   },
   "dependencies": {
     "@astrojs/react": "6.0.1",
+    "@hugeicons/core-free-icons": "4.2.2",
+    "@hugeicons/react": "1.1.9",
     "@tailwindcss/vite": "4.3.3",
     "@vercel/analytics": "2.0.1",
     "@vercel/speed-insights": "2.0.0",
     "astro": "7.1.0",
     "framer-motion": "12.42.2",
-    "lucide-react": "1.24.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "tailwindcss": "4.3.3"

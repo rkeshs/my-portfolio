@@ -1,5 +1,6 @@
 import { personalInfo } from "@/lib/data";
-import { BriefcaseBusiness as Linkedin, Code2 as Github, Mail } from "lucide-react";
+import { GithubIcon, Linkedin01Icon, Mail01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 export default function Footer() {
   return (
@@ -17,7 +18,12 @@ export default function Footer() {
               className="inline-flex h-11 w-11 items-center justify-center border border-ink/50 text-ink transition-colors hover:bg-ink hover:text-white"
               aria-label="Email"
             >
-              <Mail className="h-4 w-4" />
+              <HugeiconsIcon
+                icon={Mail01Icon}
+                className="h-4 w-4"
+                strokeWidth={2}
+                aria-hidden="true"
+              />
             </a>
             <a
               href={personalInfo.github}
@@ -26,7 +32,12 @@ export default function Footer() {
               className="inline-flex h-11 w-11 items-center justify-center border border-ink/50 text-ink transition-colors hover:bg-ink hover:text-white"
               aria-label="GitHub"
             >
-              <Github className="h-4 w-4" />
+              <HugeiconsIcon
+                icon={GithubIcon}
+                className="h-4 w-4"
+                strokeWidth={2}
+                aria-hidden="true"
+              />
             </a>
             <a
               href={personalInfo.linkedin}
@@ -35,7 +46,12 @@ export default function Footer() {
               className="inline-flex h-11 w-11 items-center justify-center border border-ink/50 text-ink transition-colors hover:bg-ink hover:text-white"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-4 w-4" />
+              <HugeiconsIcon
+                icon={Linkedin01Icon}
+                className="h-4 w-4"
+                strokeWidth={2}
+                aria-hidden="true"
+              />
             </a>
           </div>
         </div>

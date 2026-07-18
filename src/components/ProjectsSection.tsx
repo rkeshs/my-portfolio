@@ -1,16 +1,17 @@
 import { projects } from "@/lib/data";
-import { Code2 as Github, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import MotionWrapper from "./MotionWrapper";
 import SectionHeading from "./SectionHeading";
 
 function ProjectArtwork({ index }: { index: number }) {
   if (index === 0) {
     return (
-      <div className="relative aspect-[4/3] overflow-hidden bg-acid text-ink">
-        <span className="absolute -bottom-[0.18em] -left-[0.03em] font-display text-[clamp(12rem,34vw,24rem)] leading-none">
+      <div className="relative aspect-4/3 overflow-hidden bg-acid text-ink">
+        <span className="absolute bottom-[-0.18em] left-[-0.03em] font-display text-[clamp(12rem,34vw,24rem)] leading-none">
           0
         </span>
-        <div className="absolute right-[10%] top-[12%] h-[42%] w-[42%] rounded-full border-[14px] border-ink/20" />
+        <div className="absolute right-[10%] top-[12%] h-[42%] w-[42%] rounded-full border-14 border-ink/20" />
         <div className="absolute right-[18%] top-[20%] h-[26%] w-[26%] rounded-full bg-ember" />
         <div className="absolute right-5 top-5 bg-ink px-3 py-2 font-display text-sm text-white">
           LIVE SYSTEM
@@ -25,14 +26,14 @@ function ProjectArtwork({ index }: { index: number }) {
   }
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden bg-coral text-ink">
+    <div className="relative aspect-4/3 overflow-hidden bg-coral text-ink">
       <span className="absolute left-[7%] top-[10%] font-display text-[clamp(4rem,13vw,9rem)] leading-none">
         MIND
       </span>
       <span className="absolute bottom-[8%] right-[7%] font-display text-[clamp(4rem,13vw,9rem)] leading-none text-ink/75">
         CARE
       </span>
-      <div className="absolute left-1/2 top-1/2 h-[56%] w-[56%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[12px] border-ink/75" />
+      <div className="absolute left-1/2 top-1/2 h-[56%] w-[56%] -translate-x-1/2 -translate-y-1/2 rounded-full border-12 border-ink/75" />
       <div className="absolute left-1/2 top-1/2 h-[24%] w-[24%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-acid" />
       <div className="absolute bottom-5 left-5 bg-ink px-3 py-2 font-display text-sm text-white">
         SIGNAL → SUPPORT
@@ -92,10 +93,17 @@ export default function ProjectsSection() {
                     rel="noopener noreferrer"
                     className="group mt-8 inline-flex min-h-11 items-center gap-2 bg-foreground px-4 py-2.5 text-sm font-black text-background transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
                   >
-                    <Github className="h-4 w-4" aria-hidden="true" />
+                    <HugeiconsIcon
+                      icon={GithubIcon}
+                      className="h-4 w-4"
+                      strokeWidth={2}
+                      aria-hidden="true"
+                    />
                     View source code
-                    <ArrowUpRight
+                    <HugeiconsIcon
+                      icon={ArrowUpRight01Icon}
                       className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                      strokeWidth={2}
                       aria-hidden="true"
                     />
                   </a>

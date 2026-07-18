@@ -1,7 +1,8 @@
 import ThemeToggle from "./ui/theme-toggle";
 import { personalInfo } from "@/lib/data";
+import { Cancel01Icon, Menu01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = ["experience", "skills", "projects", "awards", "education"] as const;
 
@@ -48,7 +49,12 @@ export default function GlassHeader() {
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            <HugeiconsIcon
+              icon={isMenuOpen ? Cancel01Icon : Menu01Icon}
+              size={20}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
           </button>
         </div>
       </div>
