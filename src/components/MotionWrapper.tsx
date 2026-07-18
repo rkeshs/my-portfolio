@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { domAnimation, LazyMotion, m, useReducedMotion } from "framer-motion";
 import type { MotionProps } from "framer-motion";
 
 interface MotionWrapperProps extends MotionProps {
@@ -13,18 +13,20 @@ export default function MotionWrapper({ children, delay = 0, ...props }: MotionW
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        duration: reduceMotion ? 0.2 : 0.6,
-        delay,
-        ease: EASE_OUT_QUINT,
-      }}
-      {...props}
-    >
-      {children}
-    </motion.div>
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{
+          duration: reduceMotion ? 0.2 : 0.6,
+          delay,
+          ease: EASE_OUT_QUINT,
+        }}
+        {...props}
+      >
+        {children}
+      </m.div>
+    </LazyMotion>
   );
 }

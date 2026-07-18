@@ -27,8 +27,8 @@ export default function ExperienceSection() {
               index={index}
             >
               <ul className="mt-6 grid gap-3 text-sm text-muted-foreground lg:grid-cols-2">
-                {job.achievements.map((achievement, i) => (
-                  <li key={i} className="flex gap-3 leading-relaxed">
+                {job.achievements.map((achievement) => (
+                  <li key={achievement} className="flex gap-3 leading-relaxed">
                     <span className="mt-[7px] h-2 w-2 shrink-0 bg-coral" aria-hidden="true" />
                     <span>{achievement}</span>
                   </li>
