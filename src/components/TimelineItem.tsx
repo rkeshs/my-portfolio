@@ -37,15 +37,11 @@ export default function TimelineItem({
       viewport={{ once: true, margin: "-50px" }}
     >
       <div>
-        <p className="font-display text-xl text-ember md:text-2xl">
-          {date}
-        </p>
+        <p className="font-display text-xl text-ember md:text-2xl">{date}</p>
         <span className="mt-3 block h-3 w-3 bg-coral" aria-hidden="true" />
       </div>
       <div className="min-w-0">
-        <h3 className="text-2xl font-black tracking-tight md:text-3xl">
-          {title}
-        </h3>
+        <h3 className="text-2xl font-black tracking-tight md:text-3xl">{title}</h3>
         <p className="mt-1 font-semibold text-ember">{subtitle}</p>
         {children}
       </div>

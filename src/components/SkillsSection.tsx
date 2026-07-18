@@ -10,13 +10,11 @@ export default function SkillsSection() {
           <SectionHeading>Skills</SectionHeading>
         </MotionWrapper>
 
-        <div className="divide-y divide-ink/30 border-b-2 border-ink">
+        <div className="divide-y divide-ink border-b-2 border-ink">
           {skills.map(({ label, items }, index) => (
             <MotionWrapper key={label} delay={index * 0.05}>
               <div className="grid gap-2 py-5 md:grid-cols-[180px_1fr] md:gap-8 md:py-6">
-                <h3 className="text-sm font-black">
-                  {label}
-                </h3>
+                <h3 className="text-sm font-black">{label}</h3>
                 <ul className="flex flex-wrap gap-x-3 gap-y-2 font-display text-xl leading-tight md:text-2xl">
                   {items.map((skill) => (
                     <li

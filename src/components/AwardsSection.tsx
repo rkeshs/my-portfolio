@@ -10,21 +10,17 @@ export default function AwardsSection() {
           <SectionHeading>Things We Won</SectionHeading>
         </MotionWrapper>
 
-        <div className="divide-y divide-ink/35 border-b-2 border-ink">
+        <div className="divide-y divide-ink border-b-2 border-ink">
           {awards.map((award, index) => (
             <MotionWrapper key={award.name + award.date} delay={index * 0.04}>
               <div className="grid gap-3 py-5 md:grid-cols-[1fr_auto] md:items-center md:gap-8 md:py-6">
                 <div className="min-w-0">
                   <h3 className="text-lg font-black md:text-xl">{award.name}</h3>
-                  <p className="mt-0.5 text-sm text-ink/65">
-                    {award.issuer}
-                  </p>
+                  <p className="mt-0.5 text-sm text-ink/65">{award.issuer}</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 text-sm md:justify-end">
                   <span className="font-semibold text-ink/60">{award.type}</span>
-                  <span className="font-semibold tabular-nums text-ink/60">
-                    {award.date}
-                  </span>
+                  <span className="font-semibold tabular-nums text-ink/60">{award.date}</span>
                   <span className="bg-ink px-3 py-1.5 font-black text-white md:min-w-40 md:text-center">
                     {award.position}
                   </span>

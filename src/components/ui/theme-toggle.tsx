@@ -23,11 +23,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      {theme === "light" ? (
-        <Moon className="h-5 w-5" />
-      ) : (
-        <Sun className="h-5 w-5" />
-      )}
+      {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
       <span className="sr-only">Toggle theme</span>
     </button>
   );

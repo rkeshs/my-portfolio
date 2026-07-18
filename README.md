@@ -32,13 +32,17 @@ Copy `.env.example` to `.env` when you need production URL generation locally. S
 
 ## Commands
 
-| Command | Purpose |
-| --- | --- |
-| `bun run dev` | Start the development server |
-| `bun run check` | Run Astro and TypeScript diagnostics |
-| `bun run build` | Create the production build in `dist/` |
-| `bun run preview` | Preview the production build locally |
-| `bun run astro sync` | Regenerate Astro types after configuration changes |
+| Command                | Purpose                                            |
+| ---------------------- | -------------------------------------------------- |
+| `bun run dev`          | Start the development server                       |
+| `bun run check`        | Run Astro and TypeScript diagnostics               |
+| `bun run format`       | Format supported files with Oxfmt                  |
+| `bun run format:check` | Check formatting without changing files            |
+| `bun run lint`         | Run Oxlint correctness and code-quality checks     |
+| `bun run typecheck`    | Run TypeScript and Astro diagnostics               |
+| `bun run build`        | Create the production build in `dist/`             |
+| `bun run preview`      | Preview the production build locally               |
+| `bun run astro sync`   | Regenerate Astro types after configuration changes |
 
 ## Update portfolio content
 
@@ -49,7 +53,9 @@ Edit [`src/lib/data.ts`](src/lib/data.ts) to update personal details, work exper
 ```bash
 bun install --frozen-lockfile
 bun run astro sync
-bun run check
+bun run format:check
+bun run lint
+bun run typecheck
 bun run build
 ```
 

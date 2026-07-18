@@ -74,11 +74,7 @@ void main() {
   color = vec4(finalColor, 1.0);
 }`;
 
-function compileShader(
-  gl: WebGL2RenderingContext,
-  type: number,
-  source: string
-) {
+function compileShader(gl: WebGL2RenderingContext, type: number, source: string) {
   const shader = gl.createShader(type);
   if (!shader) return null;
   gl.shaderSource(shader, source);
@@ -124,11 +120,7 @@ export default function HeroCanvas() {
 
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1, 3, -1, -1, 3]),
-      gl.STATIC_DRAW
-    );
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
 
     const position = gl.getAttribLocation(program, "position");
     gl.enableVertexAttribArray(position);
@@ -144,9 +136,7 @@ export default function HeroCanvas() {
       darkMode: gl.getUniformLocation(program, "darkMode"),
     };
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
     const pointer = { x: 0, y: 0, strength: 0, targetStrength: 0 };
     let width = 0;
@@ -231,7 +221,7 @@ export default function HeroCanvas() {
       if (reduceMotion) render(0);
     });
     const intersectionObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !document.hidden) start();
+      if (entry?.isIntersecting && !document.hidden) start();
       else stop();
     });
     const onVisibilityChange = () => {

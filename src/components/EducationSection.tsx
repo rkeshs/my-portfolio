@@ -27,7 +27,10 @@ export default function EducationSection() {
                 {edu.achievements && edu.achievements.length > 0 && (
                   <ul className="space-y-4 md:pt-2">
                     {edu.achievements.map((achievement) => (
-                      <li key={achievement} className="flex gap-3 leading-relaxed text-muted-foreground">
+                      <li
+                        key={achievement}
+                        className="flex gap-3 leading-relaxed text-muted-foreground"
+                      >
                         <span className="mt-2 h-2 w-2 shrink-0 bg-ember" aria-hidden="true" />
                         <span>{achievement}</span>
                       </li>

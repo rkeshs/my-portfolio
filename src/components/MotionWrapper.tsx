@@ -9,11 +9,7 @@ interface MotionWrapperProps extends MotionProps {
 
 const EASE_OUT_QUINT = [0.22, 1, 0.36, 1] as const;
 
-export default function MotionWrapper({
-  children,
-  delay = 0,
-  ...props
-}: MotionWrapperProps) {
+export default function MotionWrapper({ children, delay = 0, ...props }: MotionWrapperProps) {
   const reduceMotion = useReducedMotion();
 
   return (

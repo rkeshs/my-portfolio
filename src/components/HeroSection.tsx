@@ -1,10 +1,5 @@
 import { personalInfo } from "@/lib/data";
-import {
-  BriefcaseBusiness as Linkedin,
-  Code2 as Github,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import { BriefcaseBusiness as Linkedin, Code2 as Github, Mail, MapPin } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import HeroCanvas from "./HeroCanvas";
@@ -22,23 +17,19 @@ const contactLinks = [
   },
 ];
 
+const movePortraitReveal = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const rect = event.currentTarget.getBoundingClientRect();
+  event.currentTarget.style.setProperty("--reveal-opacity", "1");
+  event.currentTarget.style.setProperty("--reveal-x", `${event.clientX - rect.left}px`);
+  event.currentTarget.style.setProperty("--reveal-y", `${event.clientY - rect.top}px`);
+};
+
+const hidePortraitReveal = (event: ReactPointerEvent<HTMLDivElement>) => {
+  event.currentTarget.style.setProperty("--reveal-opacity", "0");
+};
+
 export default function HeroSection() {
   const reduceMotion = useReducedMotion();
-  const movePortraitReveal = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--reveal-opacity", "1");
-    event.currentTarget.style.setProperty(
-      "--reveal-x",
-      `${event.clientX - rect.left}px`
-    );
-    event.currentTarget.style.setProperty(
-      "--reveal-y",
-      `${event.clientY - rect.top}px`
-    );
-  };
-  const hidePortraitReveal = (event: ReactPointerEvent<HTMLDivElement>) => {
-    event.currentTarget.style.setProperty("--reveal-opacity", "0");
-  };
   const reveal = {
     hidden: { opacity: 0, y: reduceMotion ? 0 : 28 },
     visible: {
@@ -96,17 +87,12 @@ export default function HeroSection() {
             {personalInfo.heroDescription}
           </motion.p>
 
-          <motion.div
-            className="mt-7 flex flex-wrap gap-2.5"
-            variants={reveal}
-          >
+          <motion.div className="mt-7 flex flex-wrap gap-2.5" variants={reveal}>
             {contactLinks.map(({ label, href, icon: Icon, external }, index) => (
               <a
                 key={label}
                 href={href}
-                {...(external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className={`group inline-flex min-h-11 items-center gap-2 px-4 py-2.5 text-sm font-bold transition-transform duration-300 ease-out hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hero-foreground ${
                   index === 0
                     ? "bg-coral text-ink"
@@ -118,13 +104,9 @@ export default function HeroSection() {
               </a>
             ))}
           </motion.div>
-
         </div>
 
-        <motion.div
-          className="relative mx-auto w-44 md:w-full md:max-w-[330px]"
-          variants={reveal}
-        >
+        <motion.div className="relative mx-auto w-44 md:w-full md:max-w-[330px]" variants={reveal}>
           <div
             className="absolute -inset-3 translate-x-5 translate-y-5 bg-coral/85"
             aria-hidden="true"

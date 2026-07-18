@@ -79,7 +79,10 @@ export default function ProjectsSection() {
 
                   <ul className="mt-7 flex flex-wrap gap-2" aria-label="Technology stack">
                     {project.stack.map((technology) => (
-                      <li key={technology} className="border border-border px-3 py-1.5 text-xs font-bold text-muted-foreground">
+                      <li
+                        key={technology}
+                        className="border border-border px-3 py-1.5 text-xs font-bold text-muted-foreground"
+                      >
                         {technology}
                       </li>
                     ))}
@@ -93,7 +96,10 @@ export default function ProjectsSection() {
                   >
                     <Github className="h-4 w-4" aria-hidden="true" />
                     Explore the code
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
+                    <ArrowUpRight
+                      className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                      aria-hidden="true"
+                    />
                   </a>
                 </div>
               </article>

@@ -4,13 +4,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
-const NAV_ITEMS = [
-  "experience",
-  "skills",
-  "projects",
-  "awards",
-  "education",
-] as const;
+const NAV_ITEMS = ["experience", "skills", "projects", "awards", "education"] as const;
 
 export default function GlassHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

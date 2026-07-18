@@ -1,9 +1,5 @@
 import { personalInfo } from "@/lib/data";
-import {
-  BriefcaseBusiness as Linkedin,
-  Code2 as Github,
-  Mail,
-} from "lucide-react";
+import { BriefcaseBusiness as Linkedin, Code2 as Github, Mail } from "lucide-react";
 
 export default function Footer() {
   return (

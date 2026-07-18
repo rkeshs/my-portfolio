@@ -103,7 +103,12 @@
 
 .hero-scrim {
   background:
-    linear-gradient(90deg, rgb(248 248 243 / 0.65) 0%, rgb(248 248 243 / 0.18) 52%, transparent 100%),
+    linear-gradient(
+      90deg,
+      rgb(248 248 243 / 0.65) 0%,
+      rgb(248 248 243 / 0.18) 52%,
+      transparent 100%
+    ),
     linear-gradient(0deg, rgb(248 248 243 / 0.14) 0%, transparent 45%);
 }
 

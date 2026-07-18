@@ -12,8 +12,8 @@ export default function ExperienceSection() {
         </MotionWrapper>
         <MotionWrapper>
           <p className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Product engineering across fast-moving teams, complicated systems,
-            and the unglamorous details that make software dependable.
+            Product engineering across fast-moving teams, complicated systems, and the unglamorous
+            details that make software dependable.
           </p>
         </MotionWrapper>
         <div>
@@ -29,10 +29,7 @@ export default function ExperienceSection() {
               <ul className="mt-6 grid gap-3 text-sm text-muted-foreground lg:grid-cols-2">
                 {job.achievements.map((achievement, i) => (
                   <li key={i} className="flex gap-3 leading-relaxed">
-                    <span
-                      className="mt-[7px] h-2 w-2 shrink-0 bg-coral"
-                      aria-hidden="true"
-                    />
+                    <span className="mt-[7px] h-2 w-2 shrink-0 bg-coral" aria-hidden="true" />
                     <span>{achievement}</span>
                   </li>
                 ))}
