@@ -321,7 +321,7 @@
   margin-block: 2.75rem;
 }
 
-/* Scroll reveal — only applies once JS has flagged support via .js */
+/* Scroll reveal. Only applies once JS has flagged support via .js */
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(14px);
