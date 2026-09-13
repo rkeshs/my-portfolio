@@ -1,7 +1,7 @@
 {
   "name": "my-portfolio",
   "version": "0.0.1",
-  "description": "Personal portfolio built with Astro, React, and Tailwind CSS",
+  "description": "Personal portfolio built with Astro and Tailwind CSS",
   "license": "MIT",
   "author": "Rishikesh S",
   "repository": {
@@ -23,24 +23,18 @@
   },
   "dependencies": {
     "@astrojs/mdx": "7.0.5",
-    "@astrojs/react": "6.0.2",
+    "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.3",
     "@hugeicons/core-free-icons": "4.2.3",
-    "@hugeicons/react": "1.1.9",
     "@tailwindcss/vite": "4.3.3",
     "@vercel/analytics": "2.0.1",
     "@vercel/speed-insights": "2.0.0",
     "astro": "7.2.1",
-    "framer-motion": "13.1.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@types/node": "24.13.3",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.4",
     "oxfmt": "0.63.0",
     "oxlint": "1.78.0",
     "typescript": "6.0.3"

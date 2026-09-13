@@ -33,7 +33,7 @@ export function buildLlmsTxt(origin: string, posts: BlogPost[]): string {
   lines.push(
     "",
     "## Pages",
-    `- [Home](${home}): Portfolio overview — experience, selected work, skills, awards, and education`,
+    `- [Home](${home}): Portfolio overview covering experience, selected work, skills, awards, and education`,
     `- [Blog](${blog}): Writing and notes on software engineering`,
     `- [Resume](${resume}): PDF resume`,
   );

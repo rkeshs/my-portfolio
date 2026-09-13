@@ -4,7 +4,9 @@ export const personalInfo = {
   github: "https://github.com/rkeshs",
   linkedin: "https://www.linkedin.com/in/rishikeshs/",
   resume: "/Rishikesh_S_Software_Engineer_Resume.pdf",
-  profilePicture: "/profile.jpg",
+  heroHeading: { first: "Rishikesh", last: "S." },
+  footerTagline: "Building reliable products from idea to production.",
+  ogImage: "/og.png",
   heroDescription:
     "I build reliable software from the first requirement to production. My work spans web applications, backend systems, data, payments, and automation. I also build the safeguards and recovery tools that keep products running.",
 };
@@ -97,10 +99,22 @@ export const skills = [
   },
 ];
 
-export const selectedWork = [
+export type ProjectArtwork = "media" | "insurance" | "store";
+
+type SelectedWork = {
+  title: string;
+  context: string;
+  artwork: ProjectArtwork;
+  summary: string;
+  stack: string[];
+  description: string[];
+};
+
+export const selectedWork: SelectedWork[] = [
   {
     title: "Automated media workflows",
     context: "Production automation",
+    artwork: "media",
     summary:
       "An event-driven production pipeline that combines AI APIs, voice generation, distributed video rendering, and scheduled publishing.",
     stack: ["TypeScript", "Remotion", "Trigger.dev", "AWS Lambda", "AI APIs", "Text-to-Speech"],
@@ -113,6 +127,7 @@ export const selectedWork = [
   {
     title: "Employee insurance registration",
     context: "Regulated workflows",
+    artwork: "insurance",
     summary:
       "A production registration system that turns complex employee data and insurer rules into traceable submissions across multiple delivery channels.",
     stack: ["TypeScript", "React", "PostgreSQL", "Provider APIs", "PDF & CSV", "Playwright"],
@@ -125,6 +140,7 @@ export const selectedWork = [
   {
     title: "Online store and payments",
     context: "Commerce platform",
+    artwork: "store",
     summary:
       "A production commerce platform that handles store setup, connected payments, secure fulfillment, and seller operations for digital products.",
     stack: ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Tinybird"],
@@ -135,6 +151,17 @@ export const selectedWork = [
     ],
   },
 ];
+
+export const sectionIntro = {
+  experience:
+    "I work across the full product lifecycle: understanding the problem, designing the data, building the feature, testing it, shipping it, and supporting it in production.",
+  work: "Examples of production systems I have built and supported as part of company teams. Details are intentionally general because the work and source code are private.",
+};
+
+export const blogInfo = {
+  title: "Blog",
+  description: "Notes on software engineering, systems, and building reliable products.",
+};
 
 export const awards = [
   {

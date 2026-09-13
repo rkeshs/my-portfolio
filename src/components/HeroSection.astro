@@ -1,0 +1,146 @@
+---
+import { getImage } from "astro:assets";
+import portrait from "@/assets/profile.jpg";
+import { personalInfo } from "@/lib/data";
+import {
+  DocumentAttachmentIcon,
+  GithubIcon,
+  Linkedin01Icon,
+  Mail01Icon,
+} from "@hugeicons/core-free-icons";
+import Icon from "./Icon.astro";
+import HeroCanvas from "./HeroCanvas.astro";
+
+const contactLinks = [
+  {
+    label: "View resume",
+    href: personalInfo.resume,
+    icon: DocumentAttachmentIcon,
+    external: true,
+    primary: true,
+  },
+  { label: "Email", href: `mailto:${personalInfo.email}`, icon: Mail01Icon },
+  { label: "GitHub", href: personalInfo.github, icon: GithubIcon, external: true },
+  {
+    label: "LinkedIn",
+    href: personalInfo.linkedin,
+    icon: Linkedin01Icon,
+    external: true,
+  },
+];
+
+const widths = [176, 330, 352, 660];
+const sizes = "(min-width: 768px) 330px, 176px";
+const [avif, jpeg, fallback] = await Promise.all([
+  getImage({ src: portrait, widths, format: "avif" }),
+  getImage({ src: portrait, widths, format: "jpeg" }),
+  getImage({ src: portrait, width: 330, format: "jpeg" }),
+]);
+---
+
+<section
+  class="relative isolate min-h-[calc(100svh-3.5rem)] overflow-hidden bg-hero-background text-hero-foreground"
+>
+  <HeroCanvas />
+  <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
+
+  <div
+    class="relative mx-auto grid min-h-[calc(100svh-3.5rem)] max-w-6xl items-center gap-9 px-6 py-10 md:grid-cols-[1.3fr_0.7fr] md:gap-14 md:px-8 md:py-16"
+  >
+    <div class="min-w-0">
+      <div
+        class="hero-reveal mb-5 flex items-center gap-3 text-sm font-semibold text-hero-foreground/80"
+        style="--reveal-delay: 40ms"
+      >
+        <span class="h-3 w-3 bg-coral" aria-hidden="true"></span>
+        Software Engineer
+      </div>
+
+      <h1
+        class="hero-reveal font-display whitespace-nowrap text-[clamp(2.5rem,11vw,5.5rem)] leading-[0.88] tracking-[-0.02em] md:text-[clamp(3.8rem,6.5vw,5.5rem)]"
+        style="--reveal-delay: 110ms"
+      >
+        {personalInfo.heroHeading.first}{" "}<span class="text-coral">{personalInfo.heroHeading.last}</span>
+      </h1>
+
+      <p
+        class="hero-reveal mt-6 max-w-[55ch] text-base leading-relaxed text-hero-foreground/82 md:text-lg"
+        style="--reveal-delay: 180ms"
+      >
+        {personalInfo.heroDescription}
+      </p>
+
+      <div class="hero-reveal mt-7 flex flex-wrap gap-2.5" style="--reveal-delay: 250ms">
+        {
+          contactLinks.map(({ label, href, icon, external, primary }) => (
+            <a
+              href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              class={`pressable group inline-flex min-h-11 items-center gap-2 px-4 py-2.5 text-sm font-bold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hero-foreground ${
+                primary
+                  ? "bg-coral text-ink"
+                  : "border border-hero-foreground/45 bg-hero-background/30 text-hero-foreground hover:border-hero-foreground hover:bg-hero-foreground hover:text-hero-background"
+              }`}
+            >
+              <Icon icon={icon} class="h-4 w-4" strokeWidth={2} />
+              {label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hero-reveal relative mx-auto w-44 md:w-full md:max-w-[330px]" style="--reveal-delay: 320ms">
+      <div class="absolute -inset-3 translate-x-5 translate-y-5 bg-coral/85" aria-hidden="true">
+      </div>
+      <div
+        class="absolute -inset-3 -translate-x-5 -translate-y-5 border border-hero-foreground/45"
+        aria-hidden="true"></div>
+      <div class="portrait-reveal relative aspect-square overflow-hidden" data-portrait-reveal>
+        <picture class="contents">
+          <source srcset={avif.srcSet.attribute} type="image/avif" sizes={sizes} />
+          <img
+            src={fallback.src}
+            srcset={jpeg.srcSet.attribute}
+            sizes={sizes}
+            alt={`Portrait of ${personalInfo.name}`}
+            width="330"
+            height="330"
+            decoding="async"
+            fetchpriority="high"
+            draggable="false"
+            class="pointer-events-none h-full w-full select-none object-cover grayscale contrast-110"
+          />
+        </picture>
+        <picture class="contents" aria-hidden="true">
+          <source srcset={avif.srcSet.attribute} type="image/avif" sizes={sizes} />
+          <img
+            src={fallback.src}
+            srcset={jpeg.srcSet.attribute}
+            sizes={sizes}
+            alt=""
+            width="330"
+            height="330"
+            decoding="async"
+            draggable="false"
+            class="portrait-reveal-color pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
+          />
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-portrait-reveal]").forEach((container) => {
+    container.addEventListener("pointermove", (event) => {
+      const rect = container.getBoundingClientRect();
+      container.style.setProperty("--reveal-opacity", "1");
+      container.style.setProperty("--reveal-x", `${event.clientX - rect.left}px`);
+      container.style.setProperty("--reveal-y", `${event.clientY - rect.top}px`);
+    });
+    container.addEventListener("pointerleave", () => {
+      container.style.setProperty("--reveal-opacity", "0");
+    });
+  });
+</script>

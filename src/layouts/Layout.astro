@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { Font } from "astro:assets";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { personalInfo } from "@/lib/data";
@@ -21,7 +22,7 @@ const {
   type = "website",
   publishedTime,
   updatedTime,
-  image = personalInfo.profilePicture,
+  image = personalInfo.ogImage,
   jsonLd,
 } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
@@ -37,6 +38,15 @@ const imageUrl = new URL(image, Astro.site ?? Astro.url.origin);
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={personalInfo.name}
+      href="/rss.xml"
+    />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -67,12 +77,8 @@ const imageUrl = new URL(image, Astro.site ?? Astro.url.origin);
       <script is:inline type="application/ld+json" set:html={serializeJsonLd(jsonLd)} />
     )}
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <Font cssVariable="--font-body" preload={[{ style: "normal", subset: "latin" }]} />
+    <Font cssVariable="--font-heading" preload={[{ subset: "latin" }]} />
     <meta
       name="theme-color"
       content="#ffffff"
@@ -83,15 +89,8 @@ const imageUrl = new URL(image, Astro.site ?? Astro.url.origin);
       content="#262626"
       media="(prefers-color-scheme: dark)"
     />
-  </head>
-  <body class="min-h-screen bg-background font-sans antialiased">
-    <slot />
-    <Analytics />
-    <SpeedInsights />
-  </body>
-</html>
-
-<script is:inline>
+  <script is:inline>
+  document.documentElement.classList.add("js");
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");
@@ -136,3 +135,26 @@ const imageUrl = new URL(image, Astro.site ?? Astro.url.origin);
     }
   }
 </style>
+  </head>
+  <body class="min-h-screen bg-background font-sans antialiased">
+    <slot />
+    <Analytics />
+    <SpeedInsights />
+    <script>
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        },
+        { rootMargin: "0px 0px -80px" },
+      );
+      document
+        .querySelectorAll("[data-reveal]")
+        .forEach((element) => revealObserver.observe(element));
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,36 @@
+---
+import { awards } from "@/lib/data";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section id="awards" class="scroll-mt-16 bg-acid py-20 text-ink md:py-28">
+  <div class="mx-auto max-w-6xl px-6 md:px-8">
+    <div data-reveal>
+      <SectionHeading>Hackathon Awards</SectionHeading>
+    </div>
+
+    <div class="divide-y divide-ink border-b-2 border-ink">
+      {
+        awards.map((award, index) => (
+          <div
+            data-reveal
+            style={`--reveal-delay: ${index * 40}ms`}
+            class="grid gap-3 py-5 md:grid-cols-[1fr_auto] md:items-center md:gap-8 md:py-6"
+          >
+            <div class="min-w-0">
+              <h3 class="text-lg font-black md:text-xl">{award.name}</h3>
+              <p class="mt-0.5 text-sm text-ink/80">{award.issuer}</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-sm md:justify-end">
+              <span class="font-semibold text-ink/80">{award.type}</span>
+              <span class="font-semibold tabular-nums text-ink/80">{award.date}</span>
+              <span class="bg-ink px-3 py-1.5 font-black text-white md:min-w-40 md:text-center">
+                {award.position}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

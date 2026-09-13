@@ -17,16 +17,18 @@
 - Keep blog posts in `src/content/blog` and conform their frontmatter to `src/content.config.ts`.
 - Do not edit generated `.astro/` or `dist/` files.
 
-## TypeScript and React
+## TypeScript and components
 
+- Prefer `.astro` components. The site ships no UI framework runtime, so use scoped `<script>` blocks for interactivity instead of reintroducing React.
 - Keep strict TypeScript green. Do not add `any`, `@ts-ignore`, non-null assertions, or unsafe casts to bypass errors.
 - Narrow nullable and indexed values before use, and omit optional properties instead of assigning `undefined`.
 - Prefer inferred local types; add explicit types at component props, shared data, and external boundaries.
-- Keep React components focused, preserve hook ordering, and clean up browser observers and event listeners.
+- Keep components focused and clean up browser observers and event listeners.
 - Preserve accessibility: semantic HTML, keyboard behavior, labels, alt text, and reduced-motion handling.
 
 ## Styling
 
 - Prefer Tailwind utilities and existing CSS variables over new one-off CSS.
 - Check both light and dark themes and narrow mobile widths for visual changes.
+- Keep text at WCAG AA contrast; the `ink/*` alpha steps on `bg-coral` and `bg-acid` are close to the limit.
 - Avoid utilities that force overflow, especially fixed widths and `whitespace-nowrap`, unless verified on small screens.

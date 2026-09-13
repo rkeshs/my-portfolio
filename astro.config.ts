@@ -1,17 +1,32 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
-const site = process.env["ORIGIN"];
+const site = process.env["ORIGIN"] ?? "https://www.rishikeshs.net";
 
 export default defineConfig({
-  ...(site ? { site } : {}),
+  site,
   vite: {
     plugins: [tailwindcss()],
   },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Archivo",
+      cssVariable: "--font-body",
+      weights: ["100 900"],
+      styles: ["normal", "italic"],
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Anton",
+      cssVariable: "--font-heading",
+      weights: [400],
+      styles: ["normal"],
+    },
+  ],
   integrations: [
     mdx({
       shikiConfig: {
@@ -22,7 +37,6 @@ export default defineConfig({
         defaultColor: false,
       },
     }),
-    react(),
     sitemap(),
   ],
 });

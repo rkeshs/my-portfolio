@@ -1,6 +1,6 @@
 # Modern Portfolio Template
 
-A responsive portfolio template built with Astro 7, React 19, Tailwind CSS 4, and Framer Motion.
+A responsive portfolio template built with Astro 7 and Tailwind CSS 4, shipping almost no client-side JavaScript.
 
 ![Portfolio screenshot](./screenshot.jpg)
 
@@ -10,8 +10,9 @@ A responsive portfolio template built with Astro 7, React 19, Tailwind CSS 4, an
 - Light and dark themes
 - Reduced-motion support
 - Static Astro output with Vercel Analytics
+- Self-hosted, preloaded fonts and responsive AVIF/JPEG images
 - Content managed from one TypeScript file
-- Type-safe MDX blog with sitemap generation
+- Type-safe MDX blog with RSS feed and sitemap generation
 
 ## Requirements
 
@@ -29,7 +30,7 @@ bun run dev
 
 Open `http://localhost:4321`.
 
-Copy `.env.example` to `.env` when you need production URL generation locally. Set `ORIGIN` to your public URL in the production deployment environment so Astro can generate canonical URLs correctly.
+Copy `.env.example` to `.env` when you need to override the site URL locally. `ORIGIN` takes precedence over the production URL that `astro.config.ts` falls back to, so canonical URLs, the sitemap, and the RSS feed are correct in every environment.
 
 ## Commands
 
@@ -47,7 +48,11 @@ Copy `.env.example` to `.env` when you need production URL generation locally. S
 
 ## Update portfolio content
 
-Edit [`src/lib/data.ts`](src/lib/data.ts) to update personal details, work experience, skills, projects, awards, and education. Replace the image referenced by `personalInfo.profilePicture` to update the portrait.
+Edit [`src/lib/data.ts`](src/lib/data.ts) to update personal details, hero and footer copy, section intros, work experience, skills, projects, awards, and education. Replace `src/assets/profile.jpg` to update the portrait; Astro generates the responsive AVIF and JPEG variants at build time.
+
+Each entry in `selectedWork` names its illustration through `artwork`, which maps to a branch of [`src/components/ProjectArtwork.astro`](src/components/ProjectArtwork.astro).
+
+The social preview image lives at `public/og.png`. Regenerate it from [`docs/og-image-source.html`](docs/og-image-source.html) with a 1200×630 screenshot after changing the copy.
 
 ## Publish a blog post
 
@@ -64,7 +69,7 @@ draft: true
 
 Set `draft` to `false` to include the post in `/blog`, static article routes, and the sitemap. An optional `updatedDate` accepts the same date format.
 
-Set `ORIGIN` to the public site URL in production. Astro uses it for canonical links and sitemap generation.
+Published posts also appear in the RSS feed at `/rss.xml`.
 
 ## Production verification
 
@@ -81,7 +86,7 @@ Dependencies are pinned to exact versions in `package.json`; update `package.jso
 
 ## Deployment
 
-The site builds to static files in `dist/` and can be deployed to Vercel or any static host. The canonical site URL comes from the `ORIGIN` environment variable.
+The site builds to static files in `dist/` and can be deployed to Vercel or any static host. The canonical site URL comes from the `ORIGIN` environment variable, falling back to the production domain configured in `astro.config.ts`.
 
 ## License
 

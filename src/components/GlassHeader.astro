@@ -1,0 +1,179 @@
+---
+import ThemeToggle from "./ui/theme-toggle.astro";
+import { personalInfo } from "@/lib/data";
+import {
+  ArrowUpRight01Icon,
+  Cancel01Icon,
+  DocumentAttachmentIcon,
+  Menu01Icon,
+} from "@hugeicons/core-free-icons";
+import Icon from "./Icon.astro";
+
+const NAV_ITEMS = [
+  { label: "Experience", href: "/#experience" },
+  { label: "Work", href: "/#work" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Awards", href: "/#awards" },
+  { label: "Education", href: "/#education" },
+  { label: "Blog", href: "/blog/" },
+] as const;
+---
+
+<header class="glass-chrome sticky top-0 z-50 w-full text-foreground" data-header>
+  <div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 md:px-8">
+    <a
+      class="pressable group flex min-h-11 items-center gap-2.5 font-display text-sm tracking-[0.04em]"
+      href="/"
+      data-nav-link
+    >
+      <span
+        class="h-3 w-3 shrink-0 bg-coral transition-transform duration-300 group-hover:rotate-45 motion-reduce:transition-none"
+        aria-hidden="true"></span>
+      {personalInfo.name}
+    </a>
+
+    <nav class="hidden items-center gap-6 text-sm font-medium md:flex" aria-label="Primary" data-desktop-nav>
+      {
+        NAV_ITEMS.map((item) => (
+          <a
+            href={item.href}
+            class="pressable flex min-h-11 items-center px-1.5 text-muted-foreground transition-colors duration-150 hover:text-foreground"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-1 text-foreground">
+      <a
+        href={personalInfo.resume}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="pressable hidden min-h-10 items-center gap-2 border border-foreground/35 px-3 text-sm font-bold text-muted-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground md:inline-flex"
+      >
+        <Icon icon={DocumentAttachmentIcon} class="h-4 w-4" strokeWidth={2} />
+        Resume
+      </a>
+      <ThemeToggle />
+
+      <button
+        type="button"
+        class="pressable inline-flex h-11 w-11 items-center justify-center text-foreground md:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-menu-button
+      >
+        <Icon icon={Menu01Icon} size={20} strokeWidth={2} class="menu-icon-open" />
+        <Icon icon={Cancel01Icon} size={20} strokeWidth={2} class="menu-icon-close hidden" />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav" class="mobile-menu bg-coral text-ink md:hidden" inert>
+    <div class="min-h-0 overflow-hidden">
+      <nav
+        class="mx-auto flex max-w-6xl flex-col gap-0 px-6 py-4 font-display text-3xl tracking-[-0.01em]"
+        aria-label="Mobile"
+      >
+        {
+          NAV_ITEMS.map((item) => (
+            <a
+              href={item.href}
+              class="pressable flex min-h-14 items-center border-b border-ink/30 text-ink"
+              data-menu-link
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a
+          href={personalInfo.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pressable flex min-h-14 items-center justify-between border-b border-ink/30 text-ink"
+          data-menu-link
+        >
+          <span>Resume</span>
+          <span
+            class="flex items-center gap-1.5 bg-ink px-2.5 py-1.5 font-sans text-xs font-black tracking-normal text-white"
+          >
+            PDF
+            <Icon icon={ArrowUpRight01Icon} class="h-3.5 w-3.5" strokeWidth={2} />
+          </span>
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const isVisible = (element: HTMLElement) =>
+    typeof element.checkVisibility === "function"
+      ? element.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true })
+      : element.getClientRects().length > 0;
+
+  const focusIfVisible = (element: HTMLElement | null | undefined) => {
+    if (element && isVisible(element)) element.focus();
+  };
+
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const button = header?.querySelector<HTMLButtonElement>("[data-menu-button]");
+  const menu = header?.querySelector<HTMLElement>("#mobile-nav");
+  const desktopNav = header?.querySelector<HTMLElement>("[data-desktop-nav]");
+  const openIcon = button?.querySelector<HTMLElement>(".menu-icon-open");
+  const closeIcon = button?.querySelector<HTMLElement>(".menu-icon-close");
+
+  if (header && button && menu) {
+    const setOpen = (open: boolean) => {
+      menu.toggleAttribute("data-open", open);
+      menu.inert = !open;
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      openIcon?.classList.toggle("hidden", open);
+      closeIcon?.classList.toggle("hidden", !open);
+    };
+
+    button.addEventListener("click", () => {
+      setOpen(button.getAttribute("aria-expanded") !== "true");
+    });
+
+    menu.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => setOpen(false)),
+    );
+    header.querySelector("[data-nav-link]")?.addEventListener("click", () => setOpen(false));
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || button.getAttribute("aria-expanded") !== "true") return;
+      setOpen(false);
+      focusIfVisible(button);
+    });
+
+    const desktopMedia = window.matchMedia("(min-width: 768px)");
+    desktopMedia.addEventListener("change", () => {
+      if (!desktopMedia.matches) return;
+      const active = document.activeElement;
+      const lostVisibleFocus = active instanceof HTMLElement && !isVisible(active);
+      setOpen(false);
+      if (!lostVisibleFocus) return;
+      focusIfVisible(desktopNav?.querySelector<HTMLElement>("a[href]"));
+    });
+  }
+</script>
+
+<style>
+  .mobile-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.3s ease;
+  }
+
+  .mobile-menu[data-open] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+</style>

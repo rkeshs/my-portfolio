@@ -1,23 +1,21 @@
 ---
-import Footer from "@/components/Footer";
-import GlassHeader from "@/components/GlassHeader";
+import Footer from "@/components/Footer.astro";
+import GlassHeader from "@/components/GlassHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { formatPostDate, getPublishedPosts } from "@/lib/blog";
+import { blogInfo, personalInfo } from "@/lib/data";
 
 const posts = await getPublishedPosts();
 ---
 
-<Layout
-  title="Blog | Rishikesh S"
-  description="Notes on software engineering, systems, and building reliable products."
->
+<Layout title={`${blogInfo.title} | ${personalInfo.name}`} description={blogInfo.description}>
   <div class="flex min-h-screen flex-col">
-    <GlassHeader client:load />
+    <GlassHeader />
     <main class="flex-1">
       <header>
         <div class="mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-20">
           <h1 class="font-display text-[clamp(4rem,15vw,6rem)] leading-[0.85] tracking-[-0.02em]">
-            Blog
+            {blogInfo.title}
           </h1>
         </div>
       </header>
@@ -51,7 +49,7 @@ const posts = await getPublishedPosts();
 
                         <time
                           datetime={post.data.pubDate.toISOString()}
-                          class="mt-12 block text-xs font-black uppercase tracking-[0.12em] text-coral"
+                          class="mt-12 block text-xs font-black uppercase tracking-[0.12em] text-ember"
                         >
                           {formatPostDate(post.data.pubDate)}
                         </time>
@@ -73,6 +71,6 @@ const posts = await getPublishedPosts();
         </div>
       </section>
     </main>
-    <Footer client:load />
+    <Footer />
   </div>
 </Layout>

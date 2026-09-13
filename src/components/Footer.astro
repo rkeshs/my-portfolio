@@ -1,0 +1,43 @@
+---
+import { personalInfo } from "@/lib/data";
+import { GithubIcon, Linkedin01Icon, Mail01Icon } from "@hugeicons/core-free-icons";
+import Icon from "./Icon.astro";
+
+const socials = [
+  { href: `mailto:${personalInfo.email}`, label: "Email", icon: Mail01Icon, external: false },
+  { href: personalInfo.github, label: "GitHub", icon: GithubIcon, external: true },
+  { href: personalInfo.linkedin, label: "LinkedIn", icon: Linkedin01Icon, external: true },
+];
+---
+
+<footer class="bg-coral py-12 text-ink md:py-16">
+  <div class="mx-auto max-w-6xl px-6 md:px-8">
+    <div
+      class="flex flex-col gap-8 border-t-2 border-ink pt-7 md:flex-row md:items-end md:justify-between"
+    >
+      <div>
+        <p class="font-display text-4xl tracking-[-0.02em] md:text-6xl">
+          {personalInfo.name}
+        </p>
+        <p class="mt-2 text-sm font-semibold text-ink/80">
+          {personalInfo.footerTagline}
+        </p>
+        <p class="mt-5 text-xs text-ink/80">&copy; {new Date().getFullYear()}</p>
+      </div>
+      <div class="flex items-center gap-2">
+        {
+          socials.map(({ href, label, icon, external }) => (
+            <a
+              href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              class="pressable inline-flex h-11 w-11 items-center justify-center border border-ink/50 text-ink transition-colors duration-150 hover:bg-ink hover:text-white"
+              aria-label={label}
+            >
+              <Icon icon={icon} class="h-4 w-4" strokeWidth={2} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>
