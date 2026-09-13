@@ -1,0 +1,47 @@
+---
+import { sectionIntro, workExperience } from "@/lib/data";
+import TimelineItem from "./TimelineItem.astro";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section id="experience" class="scroll-mt-16 bg-background pb-12 pt-20 md:pb-16 md:pt-28">
+  <div class="mx-auto max-w-6xl px-6 md:px-8">
+    <div data-reveal>
+      <SectionHeading>Work Experience</SectionHeading>
+    </div>
+    <div data-reveal>
+      <p class="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+        {sectionIntro.experience}
+      </p>
+    </div>
+    <div>
+      {
+        workExperience.map((job, index) => (
+          <TimelineItem
+            title={job.position}
+            subtitle={`${job.company} · ${job.location}`}
+            date={job.period}
+            isLast={index === workExperience.length - 1}
+            index={index}
+          >
+            <ul class="mt-6 grid gap-3 text-sm text-muted-foreground lg:grid-cols-2">
+              {job.achievements.map((achievement) => (
+                <li class="flex gap-3 leading-relaxed">
+                  <span class="mt-[7px] h-2 w-2 shrink-0 bg-coral" aria-hidden="true" />
+                  <span>{achievement}</span>
+                </li>
+              ))}
+            </ul>
+            <ul class="mt-5 flex flex-wrap gap-2" aria-label={`${job.company} technology stack`}>
+              {job.stack.map((technology) => (
+                <li class="border border-border px-3 py-1.5 text-xs font-bold text-muted-foreground">
+                  {technology}
+                </li>
+              ))}
+            </ul>
+          </TimelineItem>
+        ))
+      }
+    </div>
+  </div>
+</section>

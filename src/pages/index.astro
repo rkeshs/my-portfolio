@@ -1,28 +1,31 @@
 ---
+import { getImage } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import GlassHeader from "@/components/GlassHeader";
-import HeroSection from "@/components/HeroSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import SkillsSection from "@/components/SkillsSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import AwardsSection from "@/components/AwardsSection";
-import EducationSection from "@/components/EducationSection";
-import Footer from "@/components/Footer";
+import GlassHeader from "@/components/GlassHeader.astro";
+import HeroSection from "@/components/HeroSection.astro";
+import ExperienceSection from "@/components/ExperienceSection.astro";
+import SkillsSection from "@/components/SkillsSection.astro";
+import ProjectsSection from "@/components/ProjectsSection.astro";
+import AwardsSection from "@/components/AwardsSection.astro";
+import EducationSection from "@/components/EducationSection.astro";
+import Footer from "@/components/Footer.astro";
+import portrait from "@/assets/profile.jpg";
 import { buildPersonJsonLd } from "@/lib/seo";
 
 const origin = (Astro.site ?? Astro.url.origin).toString();
-const jsonLd = buildPersonJsonLd(origin);
+const personImage = await getImage({ src: portrait, width: 660, format: "jpeg" });
+const jsonLd = buildPersonJsonLd(origin, personImage.src);
 ---
 
 <Layout jsonLd={jsonLd}>
-  <GlassHeader client:load />
+  <GlassHeader />
   <main class="min-h-screen">
-    <HeroSection client:load />
-    <ExperienceSection client:load />
-    <ProjectsSection client:load />
-    <SkillsSection client:load />
-    <AwardsSection client:load />
-    <EducationSection client:load />
+    <HeroSection />
+    <ExperienceSection />
+    <ProjectsSection />
+    <SkillsSection />
+    <AwardsSection />
+    <EducationSection />
   </main>
-  <Footer client:load />
+  <Footer />
 </Layout>

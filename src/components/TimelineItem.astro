@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  date: string;
+  isLast?: boolean;
+  index?: number;
+}
+
+const { title, subtitle, date, isLast = false, index = 0 } = Astro.props;
+---
+
+<div
+  class:list={[
+    "grid gap-5 border-t-2 border-foreground/20 py-8 md:grid-cols-[180px_1fr] md:gap-10 md:py-10",
+    { "border-b-2": isLast },
+  ]}
+  data-reveal
+  style={`--reveal-delay: ${index * 60}ms`}
+>
+  <div>
+    <p class="font-display text-xl text-ember md:text-2xl">{date}</p>
+    <span class="mt-3 block h-3 w-3 bg-coral" aria-hidden="true"></span>
+  </div>
+  <div class="min-w-0">
+    <h3 class="text-2xl font-black tracking-tight md:text-3xl">{title}</h3>
+    <p class="mt-1 font-semibold text-ember">{subtitle}</p>
+    <slot />
+  </div>
+</div>

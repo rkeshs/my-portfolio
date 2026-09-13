@@ -1,0 +1,29 @@
+---
+import { Moon02Icon, Sun03Icon } from "@hugeicons/core-free-icons";
+import Icon from "../Icon.astro";
+---
+
+<button
+  type="button"
+  class="pressable inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full transition-colors duration-150 hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+  aria-label="Toggle color theme"
+  data-theme-toggle
+>
+  <Icon icon={Moon02Icon} class="h-5 w-5 dark:hidden" strokeWidth={2} />
+  <Icon icon={Sun03Icon} class="hidden h-5 w-5 dark:block" strokeWidth={2} />
+</button>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+  const syncPressed = () => {
+    toggle?.setAttribute(
+      "aria-pressed",
+      String(document.documentElement.classList.contains("dark")),
+    );
+  };
+  toggle?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    syncPressed();
+  });
+  syncPressed();
+</script>

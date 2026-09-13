@@ -1,10 +1,11 @@
 ---
 import { render } from "astro:content";
-import Footer from "@/components/Footer";
-import GlassHeader from "@/components/GlassHeader";
+import Footer from "@/components/Footer.astro";
+import GlassHeader from "@/components/GlassHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { formatPostDate, getPublishedPosts, type BlogPost } from "@/lib/blog";
 import { buildBlogPostingJsonLd } from "@/lib/seo";
+import { personalInfo } from "@/lib/data";
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
@@ -26,20 +27,20 @@ const jsonLd = buildBlogPostingJsonLd(origin, post);
 ---
 
 <Layout
-  title={`${post.data.title} | Rishikesh S`}
+  title={`${post.data.title} | ${personalInfo.name}`}
   description={post.data.description}
   type="article"
   publishedTime={post.data.pubDate}
   jsonLd={jsonLd}
   {...(post.data.updatedDate ? { updatedTime: post.data.updatedDate } : {})}
 >
-  <GlassHeader client:load />
+  <GlassHeader />
   <main class="min-h-screen">
     <article class="mx-auto max-w-4xl px-6 py-16 md:px-8 md:py-24">
       <header class="border-b-2 border-foreground pb-8 md:pb-10">
         <a
           href="/blog"
-          class="pressable text-sm font-black uppercase tracking-[0.16em] text-coral transition-colors duration-150 hover:text-foreground"
+          class="pressable text-sm font-black uppercase tracking-[0.16em] text-ember transition-colors duration-150 hover:text-foreground"
         >
           &larr; All posts
         </a>
@@ -68,5 +69,5 @@ const jsonLd = buildBlogPostingJsonLd(origin, post);
       </div>
     </article>
   </main>
-  <Footer client:load />
+  <Footer />
 </Layout>

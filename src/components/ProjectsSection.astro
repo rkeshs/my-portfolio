@@ -1,0 +1,65 @@
+---
+import { sectionIntro, selectedWork } from "@/lib/data";
+import ProjectArtwork from "./ProjectArtwork.astro";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section
+  id="work"
+  class="scroll-mt-16 bg-background pb-20 pt-12 text-foreground md:pb-28 md:pt-16"
+>
+  <div class="mx-auto max-w-6xl px-6 md:px-8">
+    <div data-reveal>
+      <SectionHeading>Work</SectionHeading>
+    </div>
+
+    <div data-reveal>
+      <p class="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+        {sectionIntro.work}
+      </p>
+    </div>
+
+    <div class="space-y-20 md:space-y-28">
+      {
+        selectedWork.map((project, index) => (
+          <div data-reveal style={`--reveal-delay: ${index * 80}ms`}>
+            <article class="grid items-center gap-8 md:grid-cols-2 md:items-start md:gap-14">
+              <div class={index % 2 ? "md:order-2" : ""}>
+                <ProjectArtwork artwork={project.artwork} />
+              </div>
+
+              <div class={index % 2 ? "md:order-1" : ""}>
+                <p class="mb-3 text-sm font-black uppercase tracking-wide text-ember">
+                  {project.context}
+                </p>
+                <h3 class="font-display text-[clamp(2.5rem,6vw,4.75rem)] leading-[0.92] tracking-[-0.02em]">
+                  {project.title}
+                </h3>
+                <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+                  {project.summary}
+                </p>
+
+                <ul class="mt-7 space-y-3 text-sm text-muted-foreground">
+                  {project.description.map((description) => (
+                    <li class="flex gap-3 leading-relaxed">
+                      <span class="mt-[7px] h-2 w-2 shrink-0 bg-coral" aria-hidden="true" />
+                      {description}
+                    </li>
+                  ))}
+                </ul>
+
+                <ul class="mt-7 flex flex-wrap gap-2" aria-label="Technology stack">
+                  {project.stack.map((technology) => (
+                    <li class="border border-border px-3 py-1.5 text-xs font-bold text-muted-foreground">
+                      {technology}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
