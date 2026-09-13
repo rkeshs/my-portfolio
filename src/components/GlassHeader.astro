@@ -72,37 +72,39 @@ const NAV_ITEMS = [
   </div>
 
   <div id="mobile-nav" class="mobile-menu bg-coral text-ink md:hidden" inert>
-    <nav
-      class="mx-auto flex max-w-6xl flex-col gap-0 overflow-hidden px-6 py-4 font-display text-3xl tracking-[-0.01em]"
-      aria-label="Mobile"
-    >
-      {
-        NAV_ITEMS.map((item) => (
-          <a
-            href={item.href}
-            class="pressable flex min-h-14 items-center border-b border-ink/30 text-ink"
-            data-menu-link
-          >
-            {item.label}
-          </a>
-        ))
-      }
-      <a
-        href={personalInfo.resume}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="pressable flex min-h-14 items-center justify-between border-b border-ink/30 text-ink"
-        data-menu-link
+    <div class="min-h-0 overflow-hidden">
+      <nav
+        class="mx-auto flex max-w-6xl flex-col gap-0 px-6 py-4 font-display text-3xl tracking-[-0.01em]"
+        aria-label="Mobile"
       >
-        <span>Resume</span>
-        <span
-          class="flex items-center gap-1.5 bg-ink px-2.5 py-1.5 font-sans text-xs font-black tracking-normal text-white"
+        {
+          NAV_ITEMS.map((item) => (
+            <a
+              href={item.href}
+              class="pressable flex min-h-14 items-center border-b border-ink/30 text-ink"
+              data-menu-link
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a
+          href={personalInfo.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pressable flex min-h-14 items-center justify-between border-b border-ink/30 text-ink"
+          data-menu-link
         >
-          PDF
-          <Icon icon={ArrowUpRight01Icon} class="h-3.5 w-3.5" strokeWidth={2} />
-        </span>
-      </a>
-    </nav>
+          <span>Resume</span>
+          <span
+            class="flex items-center gap-1.5 bg-ink px-2.5 py-1.5 font-sans text-xs font-black tracking-normal text-white"
+          >
+            PDF
+            <Icon icon={ArrowUpRight01Icon} class="h-3.5 w-3.5" strokeWidth={2} />
+          </span>
+        </a>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -173,10 +175,5 @@ const NAV_ITEMS = [
   .mobile-menu[data-open] {
     grid-template-rows: 1fr;
     opacity: 1;
-  }
-
-  .mobile-menu > nav {
-    min-height: 0;
-    overflow: hidden;
   }
 </style>

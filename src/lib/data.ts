@@ -99,7 +99,18 @@ export const skills = [
   },
 ];
 
-export const selectedWork = [
+export type ProjectArtwork = "media" | "insurance" | "store";
+
+type SelectedWork = {
+  title: string;
+  context: string;
+  artwork: ProjectArtwork;
+  summary: string;
+  stack: string[];
+  description: string[];
+};
+
+export const selectedWork: SelectedWork[] = [
   {
     title: "Automated media workflows",
     context: "Production automation",
